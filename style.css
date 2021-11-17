@@ -1,10 +1,30 @@
 .stickynav {
     display: sticky;
     top: 0;
+    left: 0;
     position: fixed;
     background-color: maroon;
-    width: stretch;
+    width: 100%;
+    margin: 0;
+    font-size: 150%;
+    color: white;
+    font-family: cursive;
+    padding-left: 7.5%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+
+.navbar-left {
+    padding-right: 60%;
+}
+
+.stickynav a {
+    text-decoration: none;
+    color: white;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
 body {
     padding-bottom: 20000px;
 }
