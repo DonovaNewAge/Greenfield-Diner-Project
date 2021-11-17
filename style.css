@@ -25,6 +25,16 @@
     padding-left: 10px;
 }
 
+.content {
+    justify-content: center;
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 200%;
+    font-family: cursive, serif;
+}
+
 body {
     padding-bottom: 20000px;
 }
