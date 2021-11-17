@@ -46,3 +46,40 @@ body{
     color: black;
     text-decoration: underline grey;
 }
+=======
+.stickynav {
+    display: sticky;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: maroon;
+    width: 100%;
+    margin: 0;
+    font-size: 150%;
+    color: white;
+    font-family: cursive;
+    padding-left: 7.5%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.navbar-left {
+    padding-right: 60%;
+}
+
+.stickynav a {
+    text-decoration: none;
+    color: white;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.content {
+    justify-content: center;
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 200%;
+    font-family: cursive, serif;
+}
