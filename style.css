@@ -1,0 +1,48 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+h1{
+    text-align: center;
+}
+body{
+    background-color: grey	;
+    color: #000;
+    
+}
+.container{
+    margin: 25px auto; 
+    position: relative; 
+    width: 900px;
+    
+}
+.content{
+    background: rgb(128,0,0);
+  border: 1px solid #c4c6ca;
+  margin: 0 auto;
+  padding: 25px 0 0;
+  position: relative;
+  text-align: center;
+  width: 400px;
+  height: 250px;
+}
+.bdlogo{
+    height: auto;
+    width: 32%;
+    justify-content: center;
+}
+.log{
+    padding-left: 41%;
+}
+.logbutton{
+    width: 80%;
+    border-radius: 12px;
+}
+.logbutton:hover {
+    background-color: grey;
+    color: white;
+}
+.content a{
+    color: black;
+    text-decoration: underline grey;
+}
