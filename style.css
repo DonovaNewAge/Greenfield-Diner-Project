@@ -1,0 +1,10 @@
+.stickynav {
+    display: sticky;
+    top: 0;
+    position: fixed;
+    background-color: maroon;
+    width: stretch;
+}
+body {
+    padding-bottom: 20000px;
+}
