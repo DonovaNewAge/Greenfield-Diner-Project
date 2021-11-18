@@ -8,7 +8,6 @@ h1{
 body{
     background-color: grey	;
     color: #000;
-    padding-bottom: 20000px;
 }
 .container{
     margin: 25px auto; 
@@ -110,4 +109,21 @@ body{
 .content h1 {
     font-size: 200%;
     font-family: cursive, serif;
+}
+
+.checkOut {
+    justify-content: right;
+    display: block;
+    text-align: right;
+    display: flex;
+}
+
+.cartBody {
+    color: rgb(201, 201, 201);
+    margin-top: 75px;
+    width: 80%;
+    height: 750px;
+    justify-content: center;
+    text-align: center;
+    margin-left: 10%;
 }
