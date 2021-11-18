@@ -24,7 +24,27 @@ body{
   position: relative;
   text-align: center;
   width: 400px;
-  height: 250px;
+  height: 270px;
+}
+.conten2{
+    background: rgb(128,0,0);
+    border: 1px solid #c4c6ca;
+    margin: 0 auto;
+    padding: 25px 0 0;
+    position: relative;
+    text-align: center;
+    width: 400px;
+    height: 500px;
+}
+.conten a{
+    color: black;
+}
+.conten a:hover{
+    color: grey;
+}
+.input{
+    height: 30px;
+    width: 50%;
 }
 .bdlogo{
     height: auto;
