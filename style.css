@@ -8,7 +8,7 @@ h1{
 body{
     background-color: grey	;
     color: #000;
-    
+    padding-bottom: 20000px;
 }
 .container{
     margin: 25px auto; 
@@ -24,7 +24,27 @@ body{
   position: relative;
   text-align: center;
   width: 400px;
-  height: 250px;
+  height: 270px;
+}
+.conten2{
+    background: rgb(128,0,0);
+    border: 1px solid #c4c6ca;
+    margin: 0 auto;
+    padding: 25px 0 0;
+    position: relative;
+    text-align: center;
+    width: 400px;
+    height: 500px;
+}
+.conten a{
+    color: black;
+}
+.conten a:hover{
+    color: grey;
+}
+.input{
+    height: 30px;
+    width: 50%;
 }
 .bdlogo{
     height: auto;
@@ -46,8 +66,16 @@ body{
     color: black;
     text-decoration: underline grey;
 }
+
+.navContent {
+    justify-content: center;
+    display: flex;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .stickynav {
-    display: sticky;
     top: 0;
     left: 0;
     position: fixed;
@@ -57,20 +85,16 @@ body{
     font-size: 150%;
     color: white;
     font-family: cursive;
-    padding-left: 7.5%;
     padding-top: 10px;
     padding-bottom: 10px;
+    justify-content: center;
+    z-index: 1000;
 }
-
-.navbar-left {
-    padding-right: 60%;
-}
-
 .stickynav a {
     text-decoration: none;
     color: white;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-left: 7.5%;
+    padding-right: 7.5%;
 }
 
 .content {
