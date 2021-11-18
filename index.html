@@ -4,6 +4,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
+        <section class="stickynav">
+            <div class="navContent">
+                <a href="index.html" class="selected">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="#">Hours</a>
+                <a href="Cart.html">Cart</a>
+            </div>    
+    </section>
         <script src="script.js"></script>
 
         <div class="log">
@@ -15,19 +23,21 @@
          <h2>Login</h2>
          <div>
              
-             <p>Username:</p>
-             <input type="text" required="" name="name" class="input">
-             
-             <p>Password:</p>
-             <input type="password" required="" name="password" class="input"></div> 
-                <br>
-             <button class="logbutton">Log-In</button>
+
+             Username:<br>
+             <input type="text" id="username" required="" name="name">
+             <br> 
+             Password:<br>
+             <input type="password" id="password" required="" name="password"></div> 
+             <br> 
+             <button class="logbutton" onclick="checkPassword()">Log-In</button>
+
              <br>
-             <a href="#signup">Sign-Up</a>
+             <a href="#signup" onclick="reel()" >Sign-Up</a>
         </div>
         </div>
-        <div class="container">
-            <div class="conten2" id="signup">
+        <div class="container" id="signup">
+            <div class="conten2">
             <h2>Sign-Up</h2>
             <div>
                 <p>Firstname:</p>
@@ -40,7 +50,7 @@
                 <input type="password" name="password" required="" class="input">
                 <p>Enter Password Again</p>
                 <input type="password" required="" name="password" class="input">
-                <button class="logbutton">Sign-Up</button>
+                <button class="logbutton" onclick="hiding()">Sign-Up</button>
             </div>
         </div>
     </div>
