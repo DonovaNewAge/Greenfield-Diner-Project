@@ -40,17 +40,15 @@
             <div class="conten2">
             <h2>Sign-Up</h2>
             <div>
-                <p>Firstname:</p>
-                <input type="text" required="" name="firstname" class="input">
-                <p>Lastname:</p>
-                <input type="text"  required="" name="lastname" class="input">
+                <p>Full Name:</p>
+                <input type="text" required="" id="fullname" name="fullname" class="input">
                 <p>Username:</p>
-                <input type="text" name="username" required="" class="input">
+                <input type="text" id="newUsername" name="username" required="" class="input">
                 <p>Create New Password</p>
-                <input type="password" name="password" required="" class="input">
+                <input type="password" id="newPassword" name="password" required="" class="input">
                 <p>Enter Password Again</p>
-                <input type="password" required="" name="password" class="input">
-                <button class="logbutton" onclick="hiding()">Sign-Up</button>
+                <input type="password" required="" id="confirmPassword" name="password" class="input">
+                <button class="logbutton" onclick="signUp()">Sign-Up</button>
             </div>
         </div>
     </div>
