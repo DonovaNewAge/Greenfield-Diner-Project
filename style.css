@@ -25,6 +25,11 @@ body{
   width: 400px;
   height: 270px;
 }
+
+#signup{
+    display: none;
+}
+
 .conten2{
     background: rgb(128,0,0);
     border: 1px solid #c4c6ca;

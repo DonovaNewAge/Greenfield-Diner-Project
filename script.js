@@ -29,10 +29,30 @@ function checkPassword(){
 
 }
 
+
+function signUp(){
+    key = []
+    fullname = $("#fullname").val();
+    username = $("#newUsername").val();
+    entered = $("#newPassword").val();
+    reentered = $("#confirmPassword").val();
+    console.log(fullname)
+    console.log(username)
+    console.log(entered)
+    console.log(reentered)
+    if(entered == reentered){
+        console.log("checked")
+    // tempMap.set(username, key)
+
+    }
+    else{
+        console.log("Nope")
+    }
+
+
+}
+
 function reel(){
     $("#signup").slideDown(1000)
 }
 
-function hiding(){
-    $("#signup").slideUp(1000)
-}
