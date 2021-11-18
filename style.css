@@ -90,15 +90,11 @@ body{
     font-size: 150%;
     color: white;
     font-family: cursive;
-    padding-left: 7.5%;
     padding-top: 10px;
     padding-bottom: 10px;
     justify-content: center;
+    text-align: center;
     z-index: 1000;
-}
-
-.navbar-left {
-    padding-right: 60%;
 }
 
 .stickynav a {
