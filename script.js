@@ -15,8 +15,11 @@ const tempMap = new Map([
     ["Santino","tino69420"],
 ])
 
+
 function checkPassword(){
-    entered = tempMap.get(username)
+    username = $("#aboriginal").val();
+    entered = $("#oregano").val();
+    password = tempMap.get(username)
     if(entered == password){
         console.log("allow access");
     }
