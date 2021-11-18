@@ -8,6 +8,7 @@ h1{
 body{
     background-color: grey	;
     color: #000;
+
 }
 .container{
     margin: 25px auto; 
@@ -70,7 +71,6 @@ body{
     color: black;
     text-decoration: underline grey;
 }
-
 .navContent {
     justify-content: center;
     display: flex;
@@ -80,6 +80,7 @@ body{
 }
 
 .stickynav {
+    display: sticky;
     top: 0;
     left: 0;
     position: fixed;
@@ -89,11 +90,17 @@ body{
     font-size: 150%;
     color: white;
     font-family: cursive;
+    padding-left: 7.5%;
     padding-top: 10px;
     padding-bottom: 10px;
     justify-content: center;
     z-index: 1000;
 }
+
+.navbar-left {
+    padding-right: 60%;
+}
+
 .stickynav a {
     text-decoration: none;
     color: white;
@@ -105,11 +112,12 @@ body{
     justify-content: center;
     text-align: center;
 }
-
 .content h1 {
     font-size: 200%;
     font-family: cursive, serif;
+
 }
+
 
 .checkOut {
     justify-content: right;
@@ -127,3 +135,22 @@ body{
     text-align: center;
     margin-left: 10%;
 }
+=======
+.shop-item{
+    float: left;
+    padding-left: 15%;
+    
+    }
+    .shop-item-info{
+        text-align: center;
+    }
+    .shop-item img{
+        height: 150px;
+        width: 150px;
+    }
+    .btn{
+        background-color: maroon;
+        border-radius: 5px;
+        color: grey;
+    }
+
