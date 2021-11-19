@@ -87,18 +87,14 @@ body{
     background-color: maroon;
     width: 100%;
     margin: 0;
-    font-size: 150%;
+    font-size: 175%;
     color: white;
-    font-family: cursive;
-    padding-left: 7.5%;
+    font-family: 'Estonia', cursive;
     padding-top: 10px;
     padding-bottom: 10px;
     justify-content: center;
+    text-align: center;
     z-index: 1000;
-}
-
-.navbar-left {
-    padding-right: 60%;
 }
 
 .stickynav a {
@@ -113,8 +109,8 @@ body{
     text-align: center;
 }
 .content h1 {
-    font-size: 200%;
-    font-family: cursive, serif;
+    font-size: 400%;
+    font-family: 'Estonia', cursive;
 
 }
 
