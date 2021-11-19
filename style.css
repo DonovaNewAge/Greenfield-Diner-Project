@@ -136,17 +136,17 @@ body{
     float: left;
     padding-left: 15%;
     
-    }
-    .shop-item-info{
+}
+.shop-item-info{
         text-align: center;
-    }
-    .shop-item img{
+}
+.shop-item img{
         height: 150px;
         width: 150px;
-    }
-    .btn{
+}
+.btn{
         background-color: maroon;
         border-radius: 5px;
         color: grey;
-    }
+}
 
