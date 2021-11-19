@@ -135,22 +135,33 @@ body{
     text-align: center;
     margin-left: 10%;
 }
-=======
 .shop-item{
     float: left;
-    padding-left: 15%;
+ padding-left: 15%;
     
     }
-    .shop-item-info{
+ .shop-item-info{
         text-align: center;
     }
-    .shop-item img{
+.shop-item img{
         height: 150px;
         width: 150px;
     }
-    .btn{
+.btn{
         background-color: maroon;
         border-radius: 5px;
         color: grey;
     }
 
+.shop-item2{
+        float: left;
+     padding-left: 15%;
+        padding-top: 20px;
+        }
+.shop-item2 img{
+            height: 100px;
+            width: auto;
+        }
+.mozz{
+            padding-left: 17%;
+        }
