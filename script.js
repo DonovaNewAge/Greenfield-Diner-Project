@@ -1,25 +1,26 @@
 
-main()
+// main()
 
-function main(){
+// function main(){
 
-}
+// }
 
 // function genesis(){
     
 // }
 
 const tempMap = new Map([
-    ["Joel", "sweaty"],
-    ["Donovan", "gigachad"],
-    ["Santino","tino69420"],
+    ["joeldw9", ["Joel Wilkerson", "sweaty"]],
+    ["DonovaNewAge",["Donovan Winters", "gigachad"]],
+    ["ChildishSantino",["Santino Milillo", "tino69420"]],
 ])
 
 
 function checkPassword(){
     username = $("#username").val();
     entered = $("#password").val();
-    password = tempMap.get(username)
+    console.log(tempMap.get(username)[1])
+    password = tempMap.get(username)[1]
     if(entered == password){
         console.log("allow access");
     }
@@ -36,19 +37,16 @@ function signUp(){
     username = $("#newUsername").val();
     entered = $("#newPassword").val();
     reentered = $("#confirmPassword").val();
-    console.log(fullname)
-    console.log(username)
-    console.log(entered)
-    console.log(reentered)
     if(entered == reentered){
         console.log("checked")
-    // tempMap.set(username, key)
+        key.push(fullname, entered)
+        tempMap.set(username, key)
 
     }
     else{
         console.log("Nope")
     }
-
+    console.log(tempMap)
 
 }
 
