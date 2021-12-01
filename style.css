@@ -173,3 +173,21 @@ body{
 .mozz{
             padding-left: 17%;
         }
+.storehours {
+    padding-top: 13%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.storehours table,th,td{
+    border: 3px solid black ;
+    border-collapse: collapse;
+    color: maroon;
+    background-color: white;
+}
+.storehours table{
+    width: 100%;
+    height: 100px;
+}
+.storehours th,td{
+    text-align: center;
+}
