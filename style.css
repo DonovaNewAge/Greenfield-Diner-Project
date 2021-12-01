@@ -2,20 +2,24 @@ html{
     margin: 0;
     padding: 0;
 }
+
 h1{
     text-align: center;
 }
+
 body{
     background-color: grey	;
     color: #000;
 
 }
+
 .container{
     margin: 25px auto; 
     position: relative; 
     width: 900px;
     
 }
+
 .conten{
     background: rgb(128,0,0);
   border: 1px solid #c4c6ca;
@@ -41,36 +45,45 @@ body{
     width: 400px;
     height: 500px;
 }
+
 .conten a{
     color: black;
 }
+
 .conten a:hover{
     color: grey;
 }
+
 .input{
     height: 30px;
     width: 50%;
 }
+
 .bdlogo{
     height: auto;
     width: 32%;
     justify-content: center;
 }
+
 .log{
     padding-left: 41%;
 }
+
 .logbutton{
     width: 80%;
     border-radius: 12px;
 }
+
 .logbutton:hover {
     background-color: grey;
     color: white;
 }
+
 .content a{
     color: black;
     text-decoration: underline grey;
 }
+
 .navContent {
     justify-content: center;
     display: flex;
@@ -134,42 +147,43 @@ body{
 
 .shop-item{
     float: left;
- padding-left: 15%;
-    
+    padding-left: 15%;
+}
 
-    }
  .shop-item-info{
-        text-align: center;
-    }
-.shop-item img{
-        height: 150px;
-        width: 150px;
-    }
+    text-align: center;
+}
 
+.shop-item img{
+    height: 150px;
+    width: 150px;
 }
+
 .shop-item-info{
-        text-align: center;
+    text-align: center;
 }
 .shop-item img{
-        height: 150px;
-        width: 150px;
+    height: 150px;
+    width: 150px;
 }
 
 .btn{
-        background-color: maroon;
-        border-radius: 5px;
-        color: grey;
+    background-color: maroon;
+    border-radius: 5px;
+    color: grey;
 }
 
 .shop-item2{
-        float: left;
-     padding-left: 15%;
-        padding-top: 20px;
-        }
+    float: left;
+    padding-left: 15%;
+    padding-top: 20px;
+}
+
 .shop-item2 img{
-            height: 100px;
-            width: auto;
-        }
+    height: 100px;
+    width: auto;
+}
+
 .mozz{
             padding-left: 17%;
         }
@@ -190,4 +204,6 @@ body{
 }
 .storehours th,td{
     text-align: center;
+        padding-left: 17%;
+
 }
