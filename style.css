@@ -194,10 +194,9 @@ body{
 }
 .storehours table{
     width: 100%;
-    height: 100px;
+    height: 25%;
 }
 .storehours th,td{
     text-align: center;
-        padding-left: 17%;
 
 }
