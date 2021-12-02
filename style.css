@@ -150,16 +150,7 @@ body{
     margin-left: -12.5%;
 }
 
-@media screen and (max-width: px) {
-    .shop-item {
-        width: 25%;
-    }
-    .shop-item img {
-        width: 100px;
-        height: 100px;
-    }
-}
-.shop-items{
+#shop-items{
     display: flex;
     justify-content: left;
     margin-left: 10%;
@@ -211,6 +202,19 @@ body{
     text-align: center;
 
 }
+
+.adminButtons {
+    display: none;
+    justify-content: center;
+    margin-left: -12.5%;
+}
+
+.logInButton {
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
+
 .cart-container{
     width: 70%;
  height: 85%;
