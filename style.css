@@ -151,8 +151,9 @@ body{
 }
 
  .shop-item-info{
-    text-align: center;
-}
+
+        text-align: center;
+    }
 
 .shop-item img{
     height: 150px;
@@ -161,10 +162,6 @@ body{
 
 .shop-item-info{
     text-align: center;
-}
-.shop-item img{
-    height: 150px;
-    width: 150px;
 }
 
 .btn{
@@ -180,13 +177,10 @@ body{
 }
 
 .shop-item2 img{
-    height: 100px;
-    width: auto;
+    height: 150px;
+    width: 150px;
 }
 
-.mozz{
-            padding-left: 17%;
- }
 .storehours {
     padding-top: 13%;
     padding-left: 5%;
