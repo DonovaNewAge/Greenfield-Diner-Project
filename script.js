@@ -1,4 +1,9 @@
-
+window.onload = function() {
+    var keys = Object.keys(localStorage)
+    for (i = 0; key = keys[i]; i++) {
+        localStorage.getItem(key)
+    }
+};
 // main()
 
 // function main(){
@@ -15,6 +20,13 @@ const tempMap = new Map([
     ["ChildishSantino",["Santino Milillo", "tino69420"]],
 ])
 
+var menuList = document.getElementsByClassName("shop-items")
+
+var adminArray = []
+
+adminArray.push("joeldw9")
+adminArray.push("DonovaNewAge")
+adminArray.push("ChildishSantino")
 
 function checkPassword(){
     username = $("#username").val();
@@ -54,3 +66,47 @@ function reel(){
     $("#signup").slideDown(1000)
 }
 
+function logInMenu() {
+    username = prompt("What is your username?")
+    password = tempMap.get(username)[1]
+    entered = prompt("Please enter your password.")
+    var isAdmin = adminArray.indexOf(username)
+    if(entered == password && isAdmin > -1) {
+        $('.adminButtons').show();
+    }
+}
+
+function addItem() {
+    var img = prompt("Please enter the image URL.")
+    var imageName = prompt("What food is in the image?")
+    var price = prompt("How much should the item cost? Please include $ at the beginning.")
+    var uppercaseImageName = imageName.charAt(0).toUpperCase() + imageName.slice(1)
+    localStorage.setItem(imageName, img)
+    var div1 = document.createElement("div")
+    var image = document.createElement('img');
+    image.src = localStorage.getItem(imageName);
+    var shop = document.getElementById("shop-items")
+    shop.appendChild(div1)
+    div1.classList.add("shop-item")
+    div1.appendChild(image)
+    div1.classList.add(uppercaseImageName)
+    var div = document.createElement("div")
+    div1.appendChild(div)
+    div.classList.add("shop-item-info")
+    var name = document.createElement("p")
+    var priceElement = document.createElement("p")
+    var buttonAddToCart = document.createElement("button")
+    buttonAddToCart.innerHTML = "ADD TO CART"
+    priceElement.innerHTML = price
+    name.innerHTML = uppercaseImageName
+    div.appendChild(name)
+    div.appendChild(priceElement)
+    div.appendChild(buttonAddToCart)
+    buttonAddToCart.classList.add("btn")
+}
+
+function removeItem() {
+    var itemToRemoveClass = prompt("What item would you like to remove? Please enter the name without spaces.")
+    var uppercaseClassName = itemToRemoveClass.charAt(0).toUpperCase() + itemToRemoveClass.slice(1)
+    $("." + uppercaseClassName).remove();
+}
