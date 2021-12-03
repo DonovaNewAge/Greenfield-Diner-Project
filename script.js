@@ -1,7 +1,7 @@
 window.onload = function() {
     var keys = Object.keys(localStorage)
     for (i = 0; key = keys[i]; i++) {
-        localStorage.getItem(key)
+        var itemToAdd = localStorage.getItem(key)
     }
 };
 // main()
@@ -14,19 +14,57 @@ window.onload = function() {
     
 // }
 
+
+function menu() {
+    var keys = Object.keys(localStorage)
+    for (i = 0; key = keys[i]; i++) {
+        var itemToAdd = localStorage.getItem(key)
+        console.log(itemToAdd)
+        var itemObj = JSON.parse(itemToAdd)
+        if (itemObj.onMenu == true) {
+            var source = itemObj.source
+            var imageName = itemObj.name
+            var price = itemObj.price
+            var uppercaseImageName = imageName.charAt(0).toUpperCase() + imageName.slice(1)
+            var div1 = document.createElement("div")
+            var image = document.createElement('img');
+            image.src = source;
+            var shop = document.getElementById("shop-items")
+            shop.appendChild(div1)
+            div1.classList.add("shop-item")
+            div1.appendChild(image)
+            div1.classList.add(uppercaseImageName)
+            var div = document.createElement("div")
+            div1.appendChild(div)
+            div.classList.add("shop-item-info")
+            var name = document.createElement("p")
+            var priceElement = document.createElement("p")
+            var buttonAddToCart = document.createElement("button")
+            buttonAddToCart.innerHTML = "ADD TO CART"
+            buttonAddToCart.classList.add(uppercaseImageName)
+            priceElement.innerHTML = price
+            name.innerHTML = uppercaseImageName
+            name.classList.add("name")
+            div.appendChild(name)
+            div.appendChild(priceElement)
+            div.appendChild(buttonAddToCart)
+            buttonAddToCart.classList.add("btn")
+        }
+    }
+}
+
+
+
 const tempMap = new Map([
     ["joeldw9", ["Joel Wilkerson", "sweaty"]],
     ["DonovaNewAge",["Donovan Winters", "gigachad"]],
     ["ChildishSantino",["Santino Milillo", "tino69420"]],
+    ["MainManMainul", ["Mainul Chowdhury", "devloper" ]]
 ])
 
 var menuList = document.getElementsByClassName("shop-items")
 
-var adminArray = []
-
-adminArray.push("joeldw9")
-adminArray.push("DonovaNewAge")
-adminArray.push("ChildishSantino")
+var adminArray = ["joeldw9", "DonoveNewAge","Chlidish Santino", "MainManMainul"]
 
 function checkPassword(){
     username = $("#username").val();
@@ -44,6 +82,11 @@ function checkPassword(){
 
 
 function signUp(){
+    // first = document.getElementById("signup")
+    // second = first.getElementsByClassName("input").val()
+    // piArray = Array.from(first.getElementsByClassName("input").val());
+    // console.log(piArray)
+
     key = []
     fullname = $("#fullname").val();
     username = $("#newUsername").val();
@@ -77,38 +120,60 @@ function logInMenu() {
 }
 
 function addItem() {
-    var img = prompt("Please enter the image URL.")
-    var imageName = prompt("What food is in the image?")
+    var imageURL = prompt("Please enter the image URL.")
+    var itemName = prompt("What food is in the image?")
     var price = prompt("How much should the item cost? Please include $ at the beginning.")
-    var uppercaseImageName = imageName.charAt(0).toUpperCase() + imageName.slice(1)
-    localStorage.setItem(imageName, img)
-    var div1 = document.createElement("div")
+    var calories = prompt("How many calories are in this food?")
+
+    var newItemBox = document.createElement("div")
+
     var image = document.createElement('img');
-    image.src = localStorage.getItem(imageName);
+    image.src = imageURL;
+
+    var uppercaseItemName = itemName.charAt(0).toUpperCase() + itemName.slice(1)
+
+    localStorage.setItem(itemName, imageURL)
+
+    image.src = localStorage.getItem(itemName);
+
     var shop = document.getElementById("shop-items")
-    shop.appendChild(div1)
-    div1.classList.add("shop-item")
-    div1.appendChild(image)
-    div1.classList.add(uppercaseImageName)
-    var div = document.createElement("div")
-    div1.appendChild(div)
-    div.classList.add("shop-item-info")
-    var name = document.createElement("p")
+
+    shop.appendChild(newItemBox)
+    newItemBox.classList.add("shop-item")
+    newItemBox.appendChild(image)
+    newItemBox.classList.add(uppercaseItemName)
+
+    var newItemText = document.createElement("div")
+
+    newItemBox.appendChild(newItemText)
+    newItemText.classList.add("shop-item-info")
+
+    var foodName = document.createElement("p")
     var priceElement = document.createElement("p")
     var buttonAddToCart = document.createElement("button")
+
     buttonAddToCart.innerHTML = "ADD TO CART"
+    buttonAddToCart.classList.add(uppercaseItemName)
     priceElement.innerHTML = price
-    name.innerHTML = uppercaseImageName
-    div.appendChild(name)
-    div.appendChild(priceElement)
-    div.appendChild(buttonAddToCart)
+
+    foodName.innerHTML = uppercaseItemName
+    foodName.classList.add("name")
+
+    newItemText.appendChild(foodName)
+    newItemText.appendChild(priceElement)
+    newItemText.appendChild(buttonAddToCart)
+
     buttonAddToCart.classList.add("btn")
+    localStorage.setItem(uppercaseItemName, JSON.stringify({"source": imageURL, "inCart": false, "calories": calories, "name": itemName, "price": price, "onMenu": true}))
 }
+
 
 function removeItem() {
     var itemToRemoveClass = prompt("What item would you like to remove? Please enter the name without spaces.")
     var uppercaseClassName = itemToRemoveClass.charAt(0).toUpperCase() + itemToRemoveClass.slice(1)
     $("." + uppercaseClassName).remove();
+    localStorage.removeItem(uppercaseClassName)
+
 }
 
 function saveEdits() {
