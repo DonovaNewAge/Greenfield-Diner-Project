@@ -82,11 +82,11 @@ function checkPassword(){
 
 
 function signUp(){
-    first = document.getElementById("signup")
-    second = first.getElementsByClassName("input").val()
-    piArray = Array.from(first.getElementsByClassName("input").val());
+    // first = document.getElementById("signup")
+    // second = first.getElementsByClassName("input").val()
+    // piArray = Array.from(first.getElementsByClassName("input").val());
+    // console.log(piArray)
 
-    console.log(piArray)
     key = []
     fullname = $("#fullname").val();
     username = $("#newUsername").val();
@@ -124,17 +124,15 @@ function addItem() {
     var itemName = prompt("What food is in the image?")
     var price = prompt("How much should the item cost? Please include $ at the beginning.")
     var calories = prompt("How many calories are in this food?")
-    var uppercaseImageName = imageName.charAt(0).toUpperCase() + imageName.slice(1)
-    var div1 = document.createElement("div")
+
+    var newItemBox = document.createElement("div")
+
     var image = document.createElement('img');
-    image.src = img;
+    image.src = imageURL;
 
     var uppercaseItemName = itemName.charAt(0).toUpperCase() + itemName.slice(1)
 
     localStorage.setItem(itemName, imageURL)
-
-    var newItemBox = document.createElement("div")
-    var image = document.createElement('img');
 
     image.src = localStorage.getItem(itemName);
 
@@ -147,7 +145,7 @@ function addItem() {
 
     var newItemText = document.createElement("div")
 
-    newItemBox.appendChild(itemText)
+    newItemBox.appendChild(newItemText)
     newItemText.classList.add("shop-item-info")
 
     var foodName = document.createElement("p")
@@ -155,21 +153,18 @@ function addItem() {
     var buttonAddToCart = document.createElement("button")
 
     buttonAddToCart.innerHTML = "ADD TO CART"
-    buttonAddToCart.classList.add(uppercaseImageName)
+    buttonAddToCart.classList.add(uppercaseItemName)
     priceElement.innerHTML = price
-    name.innerHTML = uppercaseImageName
-    name.classList.add("name")
-    div.appendChild(name)
-    div.appendChild(priceElement)
-    div.appendChild(buttonAddToCart)
+
     foodName.innerHTML = uppercaseItemName
+    foodName.classList.add("name")
 
     newItemText.appendChild(foodName)
     newItemText.appendChild(priceElement)
     newItemText.appendChild(buttonAddToCart)
 
     buttonAddToCart.classList.add("btn")
-    localStorage.setItem(uppercaseImageName, JSON.stringify({"source": img, "inCart": false, "calories": calories, "name": imageName, "price": price, "onMenu": true}))
+    localStorage.setItem(uppercaseItemName, JSON.stringify({"source": imageURL, "inCart": false, "calories": calories, "name": itemName, "price": price, "onMenu": true}))
 }
 
 
