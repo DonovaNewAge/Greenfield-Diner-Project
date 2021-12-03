@@ -110,3 +110,38 @@ function removeItem() {
     var uppercaseClassName = itemToRemoveClass.charAt(0).toUpperCase() + itemToRemoveClass.slice(1)
     $("." + uppercaseClassName).remove();
 }
+
+function saveEdits() {
+
+    //get the editable element
+    var editElem = document.getElementById("edit");
+    
+    //get the edited element content
+    var userVersion = editElem.innerHTML;
+    
+    //save the content to local storage
+    localStorage.userEdits = userVersion;
+    
+    //write a confirmation to the user
+    document.getElementById("update").innerHTML="Edits saved!";
+}
+function checkEdits() {
+
+    //find out if the user has previously saved edits
+    if(localStorage.userEdits!=null)
+    document.getElementById("edit").innerHTML = localStorage.userEdits;
+    }
+
+var editElem = document.getElementById("edit");
+editElem.contentEditable="false";
+function registerClickHandler() {
+    // Register click event handler for button of class 'remove'
+      "use strict";
+      var node = document.getElementsByClassName("image");
+      if (node.parentNode) {
+          node.parentNode.removeChild(node);
+      }
+  }
+  
+  var listen = document.getElementbyClassName("remove");
+  listen.addEventListener("click", registerClickHandler());

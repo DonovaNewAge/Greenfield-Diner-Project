@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Estonia&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+        
+    </head>
+    <body onload="checkEdits()">
+        <section class="stickynav">
+            <div class="navContent">
+                    <a href="index.html">Home</a>
+                    <a href="menu.html" class="selected">Menu</a>
+                    <a href="hours.html">Hours</a>
+                    <a href="Cart.html">Cart</a>
+            </div>
+        </section>
+        <section class="content">
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 class="menuHeader">Greenfield Diner Menu</h1>
+            <div class="adminButtons flex">
+                <button onclick="addItem()">Add Item</button>
+                <button onclick="removeItem()">Remove Item</button>
+            </div>
+            
+            <div id="shop-items">
+                <div class="shop-item Pizza">
+                    <img src="imgs/pizza.png">
+                    <div class="shop-item-info">
+                        <div id="edit" contenteditable="true">
+                            Pizza <br>
+                        </div>
+                        <div id="edit" contenteditable="true">
+                            $12.99
+                        </div>
+                        <button class="btn">REMOVE FROM MENU</button>
+                    
+                    </div>
+                </div>
+                <div class="shop-item Stromboli">
+                    <img src="imgs/stromboli.png">
+                    <div class="shop-item-info">
+                        <div id="edit" contenteditable="true">
+                            Stromboli <br>
+                        </div>
+                        <div id="edit" contenteditable="true">
+                            $13.99
+                        </div>
+                        <button class="btn">REMOVE FROM MENU</button>
+                    </div>
+                </div>
+                <div class="shop-item Pasta">
+                    <img src="imgs/pasta.png">
+                    <div class="shop-item-info">
+                        <div id="edit" contenteditable="true">
+                            Pasta <br>
+                        </div>
+                        <div id="edit" contenteditable="true">
+                            $12.99
+                        </div>
+                        <button class="btn">REMOVE FROM MENU</button>
+                    </div>
+                </div>
+                <div class="shop-item Calzone">
+                    <img src="imgs/calzone.png">
+                    <div class="shop-item-info">
+                        <div id="edit" contenteditable="true">
+                            Calzone <br>
+                        </div>
+                        <div id="edit" contenteditable="true">
+                            $12.99
+                        </div>
+                        <button class="btn">REMOVE FROM MENU</button>
+                    </div>
+                </div>
+                <div class="shop-item Cheeseburger">
+                    <img src="imgs/cheeseburger.png">
+                    <div class="shop-item-info">
+                        <div id="edit" contenteditable="true">
+                            Cheeseburger <br>
+                        </div>
+                        <div id="edit" contenteditable="true">
+                            $12.99
+                        </div>
+                        <button class="btn">REMOVE FROM MENU</button>
+                    </div>
+                </div>
+                <div class="shop-item MozzarellaSticks">
+                    <img src="imgs/mozzsticks.png">
+                    <div class="shop-item-info">
+                        <div id="edit" contenteditable="true">
+                            Mozzarella Sticks 
+                        </div>
+                        <div id="edit" contenteditable="true">
+                            $12.99
+                        </div>
+                        <button class="btn remove">REMOVE FROM MENU</button>
+                    </div>
+                </div>
+            </div>
+            <input type="button" value="save my edits" onclick="saveEdits()"/>
+            <div id="update"></div>
+        </section>
+    </body>
+</html>
