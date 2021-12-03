@@ -118,6 +118,7 @@ body{
 }
 
 .content {
+    margin-left: 10%;
     justify-content: center;
     text-align: center;
 }
@@ -145,13 +146,25 @@ body{
     margin-left: 10%;
 }
 
-.shop-item{
-    float: left;
-    padding-left: 15%;
+.menuHeader {
+    margin-left: -12.5%;
+}
+
+#shop-items{
+    display: flex;
+    justify-content: left;
+    margin-left: 10%;
+    margin-right: 10%;
+    flex-wrap: wrap
+}
+
+.shop-item {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 15px;
 }
 
  .shop-item-info{
-
         text-align: center;
     }
 
@@ -168,17 +181,6 @@ body{
     background-color: maroon;
     border-radius: 5px;
     color: grey;
-}
-
-.shop-item2{
-    float: left;
-    padding-left: 15%;
-    padding-top: 20px;
-}
-
-.shop-item2 img{
-    height: 150px;
-    width: 150px;
 }
 
 .storehours {
@@ -200,6 +202,19 @@ body{
     text-align: center;
 
 }
+
+.adminButtons {
+    display: none;
+    justify-content: center;
+    margin-left: -12.5%;
+}
+
+.logInButton {
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
+
 .cart-container{
     width: 70%;
  height: 85%;

@@ -5,6 +5,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Estonia&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="script.js"></script>
     </head>
     <body>
         <section class="stickynav">
@@ -21,57 +22,70 @@
             <br>
             <br>
             <br>
-            <h1>Greenfield Diner Menu</h1>
-            <div class="shop-item">
-                <img src="imgs/pizza.png">
-                <div class="shop-item-info">
-                    <p>Pizza</p>
-                    <p>$12.99</p>
-                    <button class="btn">ADD TO CART</button>
+            <h1 class="menuHeader">Greenfield Diner Menu</h1>
+            <div class="adminButtons flex">
+                <button onclick="addItem()">Add Item</button>
+                <button onclick="removeItem()">Remove Item</button>
+            </div>
+            
+            <div id="shop-items">
+                <div class="shop-item Pizza">
+                    <img src="imgs/pizza.png">
+                    <div class="shop-item-info">
+                        <p>Pizza</p>
+                        <p>$12.99</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item Stromboli">
+                    <img src="imgs/stromboli.png">
+                    <div class="shop-item-info">
+                        <p>Stromboli</p>
+                        <p>$13.99</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item Pasta">
+                    <img src="imgs/pasta.png">
+                    <div class="shop-item-info">
+                        <p>Pasta</p>
+                        <p>$12.99</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item Calzone">
+                    <img src="imgs/calzone.png">
+                    <div class="shop-item-info">
+                        <p>Calzone</p>
+                        <p>$12.99</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item Cheeseburger">
+                    <img src="imgs/cheeseburger.png">
+                    <div class="shop-item-info">
+                        <p>Cheeseburger</p>
+                        <p>$12.99</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item MozzarellaSticks">
+                    <img src="imgs/mozzsticks.png">
+                    <div class="shop-item-info">
+                        <p>Mozzarella Sticks</p>
+                        <p>$12.99</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
                 </div>
             </div>
-            <div class="shop-item">
-                <img src="imgs/stromboli.png">
-                <div class="shop-item-info">
-                    <p>Stromboli</p>
-                    <p>$13.99</p>
-                    <button class="btn">ADD TO CART</button>
-                </div>
-            </div>
-            <div class="shop-item">
-                <img src="imgs/pasta.png">
-                <div class="shop-item-info">
-                    <p>Pasta</p>
-                    <p>$12.99</p>
-                    <button class="btn">ADD TO CART</button>
-                </div>
-            </div>
-            <div class="shop-item2">
-                <img src="imgs/calzone.png">
-                <div class="shop-item-info">
-                    <p>Calzone</p>
-                    <p>$12.99</p>
-                    <button class="btn">ADD TO CART</button>
-                </div>
-            </div>
-            <div class="shop-item2">
-                <img src="imgs/cheeseburger.png">
-                <div class="shop-item-info">
-                    <p>Cheeseburger</p>
-                    <p>$12.99</p>
-                    <button class="btn">ADD TO CART</button>
-                </div>
-            </div>
-            <div class="shop-item2">
-                <img src="imgs/mozzsticks.png">
-                <div class="shop-item-info">
-                    <p>Mozzerella Sticks</p>
-                    <p>$12.99</p>
-                    <button class="btn">ADD TO CART</button>
-                </div>
-            </div>
-
+            
         </section>
+
+        <div  class="logInButton">
+            <button onclick="logInMenu()">Admin Log In</button>
+        </div>
+        
+
         <script src="script.js"></script>
     </body>
 </html>
