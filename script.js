@@ -2,11 +2,10 @@ window.onload = function() {
     var keys = Object.keys(localStorage)
     for (i = 0; key = keys[i]; i++) {
         var itemToAdd = localStorage.getItem(key)
-    }
-    var adminString = localStorage.getItem("isAdmin")
-    var admin = JSON.parse(adminString)
-    if (admin.isAdmin == true) {
-        $(".adminButtons").show()
+        if (itemToAdd == "true") {
+            $(".adminButtons").show();
+            continue
+        }
     }
 };
 // main()
@@ -24,15 +23,17 @@ function menu() {
     var keys = Object.keys(localStorage)
     for (i = 0; key = keys[i]; i++) {
         var itemToAdd = localStorage.getItem(key)
-        console.log(itemToAdd)
-        var itemObj = JSON.parse(itemToAdd)
-        if (itemObj.isAdmin == true || itemObj.isAdmin == false) {
-
+        if (itemToAdd == "true") {
+            $(".adminButtons").show();
+            continue
         }
         else {
+        console.log(itemToAdd)
+        var itemObj = JSON.parse(itemToAdd)
         if (itemObj.onMenu == true) {
             var source = itemObj.source
             var imageName = itemObj.name
+            var calories = itemObj.calories
             var price = itemObj.price
             var uppercaseImageName = imageName.charAt(0).toUpperCase() + imageName.slice(1)
             var div1 = document.createElement("div")
@@ -40,6 +41,8 @@ function menu() {
             image.src = source;
             var shop = document.getElementById("shop-items")
             shop.appendChild(div1)
+            var caloriesElement = document.createElement("p")
+            caloriesElement.innerHTML = calories + " cal"
             div1.classList.add("shop-item")
             div1.appendChild(image)
             div1.classList.add(uppercaseImageName)
@@ -56,11 +59,12 @@ function menu() {
             name.classList.add("name")
             div.appendChild(name)
             div.appendChild(priceElement)
+            div.appendChild(caloriesElement)
             div.appendChild(buttonAddToCart)
             buttonAddToCart.classList.add("btn")
         }
     }
-}
+    }
 }
 
 
@@ -79,6 +83,11 @@ function checkPassword(){
     password = tempMap.get(username)[1]
     if(entered == password){
         console.log("allow access");
+        var isAdmin = adminArray.indexOf(username)
+        if(entered == password && isAdmin > -1) {
+            $('.adminButtons').show();
+            localStorage.setItem("isAdmin", true)
+        }
     }
     else{
         console.log("access denied");
@@ -120,7 +129,7 @@ function logInMenu() {
     var isAdmin = adminArray.indexOf(username)
     if(entered == password && isAdmin > -1) {
         $('.adminButtons').show();
-        localStorage.setItem("isAdmin", JSON.stringify({"isAdmin": true, "onMenu": false}))
+        localStorage.setItem("isAdmin", true)
     }
 }
 
@@ -142,8 +151,10 @@ function addItem() {
     div1.appendChild(div)
     div.classList.add("shop-item-info")
     var name = document.createElement("p")
+    var caloriesElement = document.createElement("p")
     var priceElement = document.createElement("p")
     var buttonAddToCart = document.createElement("button")
+    caloriesElement.innerHTML = calories + " cal"
     buttonAddToCart.innerHTML = "ADD TO CART"
     buttonAddToCart.classList.add(uppercaseImageName)
     priceElement.innerHTML = price
@@ -151,6 +162,7 @@ function addItem() {
     name.classList.add("name")
     div.appendChild(name)
     div.appendChild(priceElement)
+    div.appendChild(caloriesElement)
     div.appendChild(buttonAddToCart)
     buttonAddToCart.classList.add("btn")
     localStorage.setItem(uppercaseImageName, JSON.stringify({"source": img, "inCart": false, "calories": calories, "name": imageName, "price": price, "onMenu": true}))
@@ -190,4 +202,9 @@ function editItem() {
         myObj.source = newValue;
         localStorage.setItem(itemToEdit, JSON.stringify(myObj));
     }
+}
+
+function logOut() {
+    localStorage.removeItem("isAdmin")
+    window.location.href = "index.html";
 }

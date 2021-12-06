@@ -208,7 +208,6 @@ body{
 .adminButtons {
     display: none;
     justify-content: center;
-    margin-left: -12.5%;
 }
 
 .logInButton {
@@ -311,4 +310,8 @@ body{
 
    .hidden {
        display: none;
+   }
+
+   .flex {
+       margin-left: -12.5%;
    }
