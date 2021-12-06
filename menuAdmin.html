@@ -17,10 +17,10 @@
         <section class="stickynav">
             <div class="navContent">
                     <a href="index.html">Home</a>
-                    <a href="menu.html" class="selected">Menu</a>
+                    <a href="menu.html">Menu</a>
                     <a href="hours.html">Hours</a>
                     <a href="Cart.html">Cart</a>
-                    <a class="adminButtons" href="menuAdmin.html">Admin Menu</a>
+                    <a class="adminButtons selected" href="menuAdmin.html">Admin Menu</a>
             </div>
         </section>
         
@@ -29,14 +29,19 @@
             <br>
             <br>
             <br>
-            <h1 class="menuHeader">Greenfield Diner Menu</h1>
+            <h1 class="menuHeader">Greenfield Diner Admin Menu</h1>
+            <div class="adminButtons flex">
+                <button onclick="addItem()">Add Item</button>
+                <button onclick="removeItem()">Remove Item</button>
+                <button onclick="editItem()">Edit Item</button>
+            </div>
             
             <div id="shop-items">
                 
             </div>
             
         </section>
-      
+        
         <script src="script.js"></script>
     </body>
 </html>
