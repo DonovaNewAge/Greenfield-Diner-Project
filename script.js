@@ -205,6 +205,76 @@ function editItem() {
     }
 }
 
+
+var editElem = document.getElementById("edit");
+editElem.contentEditable="false";
+function registerClickHandler() {
+    // Register click event handler for button of class 'remove'
+      "use strict";
+      var node = document.getElementsByClassName("image");
+      if (node.parentNode) {
+          node.parentNode.removeChild(node);
+      }
+  }
+  
+  var listen = document.getElementbyClassName("remove");
+  listen.addEventListener("click", registerClickHandler());
+
+
+  function newCartItem(){
+        cartItemBox = document.createElement("div")
+        cartItemBox.classList.add("cart-items")
+
+        cartImageBox = document.createElement("div")
+        cartImageBox.classList.add("image-box")
+
+        cartImage = document.createElement("img");
+        cartImage.src = "imgs/pizza.png"
+
+        cartImageBox.appendChild(cartImage)
+
+
+        cartAboutBox = document.createElement("div")
+        cartAboutBox.classList.add("about")
+
+        aboutTitle = document.createElement("h1")
+        aboutTitle.innerHTML = "Pizza"
+        cartAboutBox.appendChild(aboutTitle)
+
+        aboutSubtitle = document.createElement("h3")
+        aboutSubtitle.innerHTML = "1000"
+        cartAboutBox.appendChild(aboutSubtitle)
+
+
+        cartCounterBox = document.createElement("div")
+        cartCounterBox.classList.add("counter")
+
+        counterArray = [["bttnn","+"],["count","1"],["bttnn","-"]]
+        for(i=0; i < counterArray.length; i++){
+            counterDivs = document.createElement("div")
+            counterDivs.classList.add(counterArray[i][0])
+            counterDivs.innerHTML = counterArray[i][1]
+            cartCounterBox.appendChild(counterDivs)
+        }
+
+
+        cartPricesBox = document.createElement("div")
+        cartPricesBox.classList.add("prices")
+
+        pricesArray = [["amount","5.99"],["save","Save for later"],["remove","remove"]]
+        for(i=0; i < pricesArray.length; i++){
+            pricesDivs = document.createElement("div")
+            pricesDivs.classList.add(pricesArray[i][0])
+            pricesDivs.innerHTML = pricesArray[i][1]
+            cartPricesBox.appendChild(pricesDivs)
+        }
+
+        cartItemBox.append(cartImageBox,cartAboutBox,cartCounterBox,cartPricesBox)
+        console.log(cartItemBox)
+        $(".cart-container").append(cartItemBox)
+
+  }
+
 function logOut() {
     localStorage.removeItem("isAdmin")
     window.location.href = "index.html";
