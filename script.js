@@ -3,6 +3,11 @@ window.onload = function() {
     for (i = 0; key = keys[i]; i++) {
         var itemToAdd = localStorage.getItem(key)
     }
+    var adminString = localStorage.getItem("isAdmin")
+    var admin = JSON.parse(adminString)
+    if (admin.isAdmin == true) {
+        $(".adminButtons").show()
+    }
 };
 // main()
 
@@ -21,6 +26,10 @@ function menu() {
         var itemToAdd = localStorage.getItem(key)
         console.log(itemToAdd)
         var itemObj = JSON.parse(itemToAdd)
+        if (itemObj.isAdmin == true || itemObj.isAdmin == false) {
+
+        }
+        else {
         if (itemObj.onMenu == true) {
             var source = itemObj.source
             var imageName = itemObj.name
@@ -52,19 +61,16 @@ function menu() {
         }
     }
 }
-
+}
 
 
 const tempMap = new Map([
     ["joeldw9", ["Joel Wilkerson", "sweaty"]],
     ["DonovaNewAge",["Donovan Winters", "gigachad"]],
     ["ChildishSantino",["Santino Milillo", "tino69420"]],
-    ["MainManMainul", ["Mainul Chowdhury", "devloper" ]]
 ])
 
 var menuList = document.getElementsByClassName("shop-items")
-
-var adminArray = ["joeldw9", "DonoveNewAge","Chlidish Santino", "MainManMainul"]
 
 function checkPassword(){
     username = $("#username").val();
@@ -76,17 +82,13 @@ function checkPassword(){
     }
     else{
         console.log("access denied");
+        alert("You have entered incorrect information, please try again.")
     }
 
 }
 
 
 function signUp(){
-    first = document.getElementById("signup")
-    second = first.getElementsByClassName("input").val()
-    piArray = Array.from(first.getElementsByClassName("input").val());
-
-    console.log(piArray)
     key = []
     fullname = $("#fullname").val();
     username = $("#newUsername").val();
@@ -109,6 +111,8 @@ function reel(){
     $("#signup").slideDown(1000)
 }
 
+var adminArray = ["joeldw9", "DonovaNewAge", "ChildishSantino"]
+
 function logInMenu() {
     username = prompt("What is your username?")
     password = tempMap.get(username)[1]
@@ -116,44 +120,30 @@ function logInMenu() {
     var isAdmin = adminArray.indexOf(username)
     if(entered == password && isAdmin > -1) {
         $('.adminButtons').show();
+        localStorage.setItem("isAdmin", JSON.stringify({"isAdmin": true, "onMenu": false}))
     }
 }
 
 function addItem() {
-    var imageURL = prompt("Please enter the image URL.")
-    var itemName = prompt("What food is in the image?")
+    var img = prompt("Please enter the image URL.")
+    var imageName = prompt("What food is in the image?")
     var price = prompt("How much should the item cost? Please include $ at the beginning.")
     var calories = prompt("How many calories are in this food?")
     var uppercaseImageName = imageName.charAt(0).toUpperCase() + imageName.slice(1)
     var div1 = document.createElement("div")
     var image = document.createElement('img');
     image.src = img;
-
-    var uppercaseItemName = itemName.charAt(0).toUpperCase() + itemName.slice(1)
-
-    localStorage.setItem(itemName, imageURL)
-
-    var newItemBox = document.createElement("div")
-    var image = document.createElement('img');
-
-    image.src = localStorage.getItem(itemName);
-
     var shop = document.getElementById("shop-items")
-
-    shop.appendChild(newItemBox)
-    newItemBox.classList.add("shop-item")
-    newItemBox.appendChild(image)
-    newItemBox.classList.add(uppercaseItemName)
-
-    var newItemText = document.createElement("div")
-
-    newItemBox.appendChild(itemText)
-    newItemText.classList.add("shop-item-info")
-
-    var foodName = document.createElement("p")
+    shop.appendChild(div1)
+    div1.classList.add("shop-item")
+    div1.appendChild(image)
+    div1.classList.add(uppercaseImageName)
+    var div = document.createElement("div")
+    div1.appendChild(div)
+    div.classList.add("shop-item-info")
+    var name = document.createElement("p")
     var priceElement = document.createElement("p")
     var buttonAddToCart = document.createElement("button")
-
     buttonAddToCart.innerHTML = "ADD TO CART"
     buttonAddToCart.classList.add(uppercaseImageName)
     priceElement.innerHTML = price
@@ -162,12 +152,6 @@ function addItem() {
     div.appendChild(name)
     div.appendChild(priceElement)
     div.appendChild(buttonAddToCart)
-    foodName.innerHTML = uppercaseItemName
-
-    newItemText.appendChild(foodName)
-    newItemText.appendChild(priceElement)
-    newItemText.appendChild(buttonAddToCart)
-
     buttonAddToCart.classList.add("btn")
     localStorage.setItem(uppercaseImageName, JSON.stringify({"source": img, "inCart": false, "calories": calories, "name": imageName, "price": price, "onMenu": true}))
 }
@@ -181,37 +165,29 @@ function removeItem() {
 
 }
 
-function saveEdits() {
-
-    //get the editable element
-    var editElem = document.getElementById("edit");
-    
-    //get the edited element content
-    var userVersion = editElem.innerHTML;
-    
-    //save the content to local storage
-    localStorage.userEdits = userVersion;
-    
-    //write a confirmation to the user
-    document.getElementById("update").innerHTML="Edits saved!";
-}
-function checkEdits() {
-
-    //find out if the user has previously saved edits
-    if(localStorage.userEdits!=null)
-    document.getElementById("edit").innerHTML = localStorage.userEdits;
+function editItem() {
+    var itemToEdit = prompt("What item would you like to edit?")
+    var AttributeToEdit = prompt("What would you like to change about it? Please enter name, price, calories, or image.")
+    var newValue = prompt("What would you like the new value to be?")
+    if (AttributeToEdit == "name") {
+        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
+        myObj.name = newValue;
+        localStorage.removeItem(itemToEdit);
+        localStorage.setItem(newValue, JSON.stringify(myObj));
     }
-
-var editElem = document.getElementById("edit");
-editElem.contentEditable="false";
-function registerClickHandler() {
-    // Register click event handler for button of class 'remove'
-      "use strict";
-      var node = document.getElementsByClassName("image");
-      if (node.parentNode) {
-          node.parentNode.removeChild(node);
-      }
-  }
-  
-  var listen = document.getElementbyClassName("remove");
-  listen.addEventListener("click", registerClickHandler());
+    if (AttributeToEdit == "price") {
+        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
+        myObj.price = newValue;
+        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
+    }
+    if (AttributeToEdit == "calories") {
+        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
+        myObj.calories = newValue;
+        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
+    }
+    if (AttributeToEdit == "image") {
+        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
+        myObj.source = newValue;
+        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
+    }
+}
