@@ -220,23 +220,8 @@ function editItem() {
         myObj.source = newValue;
         localStorage.setItem(itemToEdit, JSON.stringify(myObj));
     }
-}
-
-
-var editElem = document.getElementById("edit");
-editElem.contentEditable="false";
-function registerClickHandler() {
-    // Register click event handler for button of class 'remove'
-      "use strict";
-      var node = document.getElementsByClassName("image");
-      if (node.parentNode) {
-          node.parentNode.removeChild(node);
-      }
-  }
-  
-  var listen = document.getElementbyClassName("remove");
-  listen.addEventListener("click", registerClickHandler());
-
+    window.location.href = "menuAdmin.html"
+} 
 
   function newCartItem(){
         cartItemBox = document.createElement("div")
