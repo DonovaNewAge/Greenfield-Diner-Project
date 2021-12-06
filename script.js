@@ -200,43 +200,28 @@ function editItem() {
     var AttributeToEdit = prompt("What would you like to change about it? Please enter name, price, calories, or image.")
     var newValue = prompt("What would you like the new value to be?")
     if (AttributeToEdit == "name") {
-        var itemToEdit = JSON.parse(localStorage.getItem(itemToEdit));
-        itemToEdit.name = newValue;
+        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
+        myObj.name = newValue;
         localStorage.removeItem(itemToEdit);
-        localStorage.setItem(newValue, JSON.stringify(itemToEdit));
+        localStorage.setItem(newValue, JSON.stringify(myObj));
     }
     if (AttributeToEdit == "price") {
-        var itemToEdit = JSON.parse(localStorage.getItem(itemToEdit));
-        itemToEdit.price = newValue;
-        localStorage.setItem(itemToEdit, JSON.stringify(itemToEdit));
+        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
+        myObj.price = newValue;
+        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
     }
     if (AttributeToEdit == "calories") {
-        var itemToEdit = JSON.parse(localStorage.getItem(itemToEdit));
-        itemToEdit.calories = newValue;
-        localStorage.setItem(itemToEdit, JSON.stringify(itemToEdit));
+        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
+        myObj.calories = newValue;
+        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
     }
     if (AttributeToEdit == "image") {
-        var itemToEdit = JSON.parse(localStorage.getItem(itemToEdit));
-        itemToEdit.source = newValue;
-        localStorage.setItem(itemToEdit, JSON.stringify(itemToEdit));
+        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
+        myObj.source = newValue;
+        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
     }
-}
-
-
-var editElem = document.getElementById("edit");
-editElem.contentEditable="false";
-function registerClickHandler() {
-    // Register click event handler for button of class 'remove'
-      "use strict";
-      var node = document.getElementsByClassName("image");
-      if (node.parentNode) {
-          node.parentNode.removeChild(node);
-      }
-  }
-  
-  var listen = document.getElementbyClassName("remove");
-  listen.addEventListener("click", registerClickHandler());
-
+    window.location.href = "menuAdmin.html"
+} 
 
   function newCartItem(){
         cartItemBox = document.createElement("div")
