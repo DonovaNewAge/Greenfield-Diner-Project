@@ -232,6 +232,7 @@ function editItem() {
 
         cartImage = document.createElement("img");
         cartImage.src = "imgs/pizza.png"
+        cartImage.setAttribute("height", "120px")
 
         cartImageBox.appendChild(cartImage)
 
