@@ -169,6 +169,7 @@ function addItem() {
 }
 
 
+
 function removeItem() {
     var itemToRemoveClass = prompt("What item would you like to remove? Please enter the name without spaces.")
     var uppercaseClassName = itemToRemoveClass.charAt(0).toUpperCase() + itemToRemoveClass.slice(1)
