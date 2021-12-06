@@ -200,25 +200,25 @@ function editItem() {
     var AttributeToEdit = prompt("What would you like to change about it? Please enter name, price, calories, or image.")
     var newValue = prompt("What would you like the new value to be?")
     if (AttributeToEdit == "name") {
-        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
-        myObj.name = newValue;
+        var itemToEdit = JSON.parse(localStorage.getItem(itemToEdit));
+        itemToEdit.name = newValue;
         localStorage.removeItem(itemToEdit);
-        localStorage.setItem(newValue, JSON.stringify(myObj));
+        localStorage.setItem(newValue, JSON.stringify(itemToEdit));
     }
     if (AttributeToEdit == "price") {
-        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
-        myObj.price = newValue;
-        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
+        var itemToEdit = JSON.parse(localStorage.getItem(itemToEdit));
+        itemToEdit.price = newValue;
+        localStorage.setItem(itemToEdit, JSON.stringify(itemToEdit));
     }
     if (AttributeToEdit == "calories") {
-        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
-        myObj.calories = newValue;
-        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
+        var itemToEdit = JSON.parse(localStorage.getItem(itemToEdit));
+        itemToEdit.calories = newValue;
+        localStorage.setItem(itemToEdit, JSON.stringify(itemToEdit));
     }
     if (AttributeToEdit == "image") {
-        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
-        myObj.source = newValue;
-        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
+        var itemToEdit = JSON.parse(localStorage.getItem(itemToEdit));
+        itemToEdit.source = newValue;
+        localStorage.setItem(itemToEdit, JSON.stringify(itemToEdit));
     }
 }
 
