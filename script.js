@@ -209,8 +209,11 @@ function editItem() {
 } 
 
   function newCartItem(key){
+        console.log(key)
         var cartItemToAdd = localStorage.getItem(key) // Gets items from localStorage
+        console.log(cartItemToAdd)
         var cITAP = JSON.parse(cartItemToAdd)
+        console.log(cITAP)
 
         cartItemBox = document.createElement("div")
         cartItemBox.classList.add("cart-items")
