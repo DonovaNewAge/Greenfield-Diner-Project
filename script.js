@@ -208,7 +208,10 @@ function editItem() {
     window.location.href = "menuAdmin.html"
 } 
 
-  function newCartItem(){
+  function newCartItem(key){
+        var cartItemToAdd = localStorage.getItem(key) // Gets items from localStorage
+        var cITAP = JSON.parse(cartItemToAdd)
+
         cartItemBox = document.createElement("div")
         cartItemBox.classList.add("cart-items")
 
@@ -216,7 +219,7 @@ function editItem() {
         cartImageBox.classList.add("image-box")
 
         cartImage = document.createElement("img");
-        cartImage.src = "imgs/pizza.png"
+        cartImage.src = cITAP.source
         cartImage.setAttribute("height", "120px")
 
         cartImageBox.appendChild(cartImage)
@@ -226,11 +229,11 @@ function editItem() {
         cartAboutBox.classList.add("about")
 
         aboutTitle = document.createElement("h1")
-        aboutTitle.innerHTML = "Pizza"
+        aboutTitle.innerHTML = cITAP.name
         cartAboutBox.appendChild(aboutTitle)
 
         aboutSubtitle = document.createElement("h3")
-        aboutSubtitle.innerHTML = "1000"
+        aboutSubtitle.innerHTML = cITAP.calories
         cartAboutBox.appendChild(aboutSubtitle)
 
 
@@ -249,7 +252,7 @@ function editItem() {
         cartPricesBox = document.createElement("div")
         cartPricesBox.classList.add("prices")
 
-        pricesArray = [["amount","5.99"],["save","Save for later"],["remove","remove"]]
+        pricesArray = [["amount",cITAP.price],["save","Save for later"],["remove","remove"]]
         for(i=0; i < pricesArray.length; i++){
             pricesDivs = document.createElement("div")
             pricesDivs.classList.add(pricesArray[i][0])
