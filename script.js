@@ -13,6 +13,7 @@ window.onload = function() {
 };
 
 function menu() {
+    
     var keys = Object.keys(localStorage) // Gets items from localStorage
     for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
         var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
@@ -32,7 +33,6 @@ function menu() {
             if (itemObj.type == "item") { // Gets items for the menu
 
             var shop = document.getElementById("shop-items") // Gets the menu content area
-
             var itemContainer = document.createElement("div") // Container for image
             var itemInfo = document.createElement("div") // Container for information and add to cart button
             var imageElement = document.createElement('img') // Will house image for the item
@@ -225,7 +225,24 @@ function editItem() {
     window.location.href = "menuAdmin.html"
 } 
 
-  function newCartItem(){
+  function cart() {
+    var keys = Object.keys(localStorage) // Gets items from localStorage
+    for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
+        var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
+        var itemToAddParsed = JSON.parse(itemToAdd)
+        console.log(itemToAddParsed)
+        if (itemToAddParsed.type == "admin" && itemToAddParsed.currentuser == true) { // Separates item that determines if admin
+            $(".adminButtons").show(); // Separates item that determines if admin
+            continue // Separates item that determines if admin
+        }
+
+        else if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
+            continue
+        }
+
+        else { 
+            var itemObj = JSON.parse(itemToAdd); // Gets items for the menu 
+            if (itemObj.type == "item" && itemObj.inCart == true) { // Gets items for the menu
         cartItemBox = document.createElement("div")
         cartItemBox.classList.add("cart-items")
 
@@ -233,21 +250,21 @@ function editItem() {
         cartImageBox.classList.add("image-box")
 
         cartImage = document.createElement("img");
-        cartImage.src = "imgs/pizza.png"
+        cartImage.src = itemToAddParsed.source;
         cartImage.setAttribute("height", "120px")
 
         cartImageBox.appendChild(cartImage)
 
-
+        var uppercaseImageName = itemToAddParsed.name.charAt(0).toUpperCase() + itemToAddParsed.name.slice(1)
         cartAboutBox = document.createElement("div")
         cartAboutBox.classList.add("about")
 
         aboutTitle = document.createElement("h1")
-        aboutTitle.innerHTML = "Pizza"
+        aboutTitle.innerHTML = uppercaseImageName
         cartAboutBox.appendChild(aboutTitle)
 
         aboutSubtitle = document.createElement("h3")
-        aboutSubtitle.innerHTML = "1000"
+        aboutSubtitle.innerHTML = itemToAddParsed.calories + "cal"
         cartAboutBox.appendChild(aboutSubtitle)
 
 
@@ -266,7 +283,7 @@ function editItem() {
         cartPricesBox = document.createElement("div")
         cartPricesBox.classList.add("prices")
 
-        pricesArray = [["amount","5.99"],["save","Save for later"],["remove","remove"]]
+        pricesArray = [["amount", itemToAddParsed.price],["save","Save for later"],["remove","remove"]]
         for(i=0; i < pricesArray.length; i++){
             pricesDivs = document.createElement("div")
             pricesDivs.classList.add(pricesArray[i][0])
@@ -277,8 +294,10 @@ function editItem() {
         cartItemBox.append(cartImageBox,cartAboutBox,cartCounterBox,cartPricesBox)
         console.log(cartItemBox)
         $(".cart-container").append(cartItemBox)
-
-  }
+    }
+}
+}
+}
 
 function logOut() {
   
