@@ -72,6 +72,7 @@ function menu() {
                 var itemToUseParsed = JSON.parse(itemToUse)
                 console.log(itemToUseParsed)
                 itemToUseParsed.inCart = true
+                itemToUseParsed.quantity = 1
                 localStorage.setItem(uppercaseImageName, JSON.stringify(itemToUseParsed))
             })
             }
@@ -182,10 +183,11 @@ function addItem() {
         var itemToUseParsed = JSON.parse(itemToUse)
         console.log(itemToUseParsed)
         itemToUseParsed.inCart = true
+        itemToUseParsed.quantity = 1
         localStorage.setItem(uppercaseImageName, JSON.stringify(itemToUseParsed))
     })
 
-    localStorage.setItem(uppercaseImageName, JSON.stringify({"type": "item", "source": imageURL, "inCart": false, "calories": itemCalories, "name": itemName, "price": itemPrice, "inCart": false}))
+    localStorage.setItem(uppercaseImageName, JSON.stringify({"type": "item", "source": imageURL, "inCart": false, "calories": itemCalories, "name": itemName, "price": itemPrice, "inCart": false, "quantity": 0}))
 }
 
 function removeItem() {
