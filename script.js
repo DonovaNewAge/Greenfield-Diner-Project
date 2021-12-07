@@ -170,12 +170,8 @@ function addItem() {
     buttonAddToCart.innerHTML = "ADD TO CART" // Setting up HTML for elements
 
     shop.appendChild(itemContainer) // Adding elements to page
-    itemContainer.appendChild(imageElement) // Adding elements to page
-    itemContainer.appendChild(itemInfo) // Adding elements to page
-    itemInfo.appendChild(nameElement) // Adding elements to page
-    itemInfo.appendChild(priceElement) // Adding elements to page
-    itemInfo.appendChild(caloriesElement) // Adding elements to page
-    itemInfo.appendChild(buttonAddToCart) // Adding elements to page
+    itemContainer.append(imageElement, itemInfo) // Adding elements to page
+    itemInfo.append(nameElement, priceElement, caloriesElement, buttonAddToCart) // Adding elements to page
 
     buttonAddToCart.classList.add("btn") // Used for styling
     $("." + uppercaseImageName).click(function() { // To add to cart
@@ -199,31 +195,21 @@ function removeItem() {
 
 function editItem() {
     var itemToEdit = prompt("What item would you like to edit?")
-    var AttributeToEdit = prompt("What would you like to change about it? Please enter name, price, calories, or image.")
+    var AttributeToEdit = prompt("What would you like to change about it? Please enter name, price, calories, or \"source\" to change the image.")
     var newValue = prompt("What would you like the new value to be?")
+    var myObj = JSON.parse(localStorage.getItem(itemToEdit));
     if (AttributeToEdit == "name") {
-        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
         myObj.name = newValue;
         localStorage.removeItem(itemToEdit);
         localStorage.setItem(newValue, JSON.stringify(myObj));
     }
-    if (AttributeToEdit == "price") {
-        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
-        myObj.price = newValue;
-        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
-    }
-    if (AttributeToEdit == "calories") {
-        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
-        myObj.calories = newValue;
-        localStorage.setItem(itemToEdit, JSON.stringify(myObj));
-    }
-    if (AttributeToEdit == "image") {
-        var myObj = JSON.parse(localStorage.getItem(itemToEdit));
-        myObj.source = newValue;
+    else{
+        myObj.setAttribute(AttributeToEdit,newValue)
         localStorage.setItem(itemToEdit, JSON.stringify(myObj));
     }
     window.location.href = "menuAdmin.html"
 } 
+
 
   function cart() {
     var keys = Object.keys(localStorage) // Gets items from localStorage
@@ -250,7 +236,9 @@ function editItem() {
         cartImageBox.classList.add("image-box")
 
         cartImage = document.createElement("img");
+
         cartImage.src = itemToAddParsed.source;
+              
         cartImage.setAttribute("height", "120px")
 
         cartImageBox.appendChild(cartImage)
@@ -260,11 +248,13 @@ function editItem() {
         cartAboutBox.classList.add("about")
 
         aboutTitle = document.createElement("h1")
+
         aboutTitle.innerHTML = uppercaseImageName
         cartAboutBox.appendChild(aboutTitle)
 
         aboutSubtitle = document.createElement("h3")
         aboutSubtitle.innerHTML = itemToAddParsed.calories + "cal"
+
         cartAboutBox.appendChild(aboutSubtitle)
 
 
@@ -284,6 +274,7 @@ function editItem() {
         cartPricesBox.classList.add("prices")
 
         pricesArray = [["amount", itemToAddParsed.price],["save","Save for later"],["remove","remove"]]
+
         for(i=0; i < pricesArray.length; i++){
             pricesDivs = document.createElement("div")
             pricesDivs.classList.add(pricesArray[i][0])
