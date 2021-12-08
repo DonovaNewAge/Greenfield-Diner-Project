@@ -2,6 +2,7 @@ window.onload = function() {
 
     var keys = Object.keys(localStorage) // Gets items from localStorage
     for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
+
         var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
         var itemToAddParsed = JSON.parse(itemToAdd)
 
@@ -154,7 +155,7 @@ function addItem() {
 
     var imageURL = prompt("Please enter the image URL.") // Getting image source
     var itemName = prompt("What food is in the image?") // Getting information for the elements above
-    var itemPrice = prompt("How much should the item cost? Please include $ at the beginning.") // Getting information for the elements above
+    var itemPrice = prompt("How much should the item cost? Please exclude $ at the beginning.") // Getting information for the elements above
     var itemCalories = prompt("How many calories are in this food?") // Getting information for the elements above
 
     var uppercaseImageName = itemName.charAt(0).toUpperCase() + itemName.slice(1) // Used to unify capitalization on pages
@@ -165,7 +166,7 @@ function addItem() {
            
     imageElement.src = imageURL // Setting up HTML for elements
     nameElement.innerHTML = uppercaseImageName // Setting up HTML for elements
-    priceElement.innerHTML = itemPrice // Setting up HTML for elements
+    priceElement.innerHTML = "$" + itemPrice // Setting up HTML for elements
     caloriesElement.innerHTML = itemCalories + " cal" // Setting up HTML for elements
     buttonAddToCart.innerHTML = "ADD TO CART" // Setting up HTML for elements
 
@@ -210,107 +211,111 @@ function editItem() {
     window.location.href = "menuAdmin.html"
 } 
 
-
-  function cart() {
+function cart() {
     var keys = Object.keys(localStorage) // Gets items from localStorage
-    for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
-        var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
+    for (i = 0; i < keys.length; i++) { // Gets items from localStorage
+        console.log(keys[i])
+        var itemToAdd = localStorage.getItem(keys[i]) // Gets items from localStorage
         var itemToAddParsed = JSON.parse(itemToAdd)
         console.log(itemToAddParsed)
         if (itemToAddParsed.type == "admin" && itemToAddParsed.currentuser == true) { // Separates item that determines if admin
             $(".adminButtons").show(); // Separates item that determines if admin
-            continue // Separates item that determines if admin
+// Separates item that determines if admin
         }
+        else if(itemToAddParsed.type == "item" && itemToAddParsed.inCart == true) { // Gets items for the menu
+            cartItemBox = document.createElement("div")
+            cartItemBox.classList.add("cart-items")
 
-        else if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
-            continue
-        }
+            cartImageBox = document.createElement("div")
+            cartImageBox.classList.add("image-box")
 
-        else { 
-            var itemObj = JSON.parse(itemToAdd); // Gets items for the menu 
-            if (itemObj.type == "item" && itemObj.inCart == true) { // Gets items for the menu
-        cartItemBox = document.createElement("div")
-        cartItemBox.classList.add("cart-items")
+            cartImage = document.createElement("img");
 
-        cartImageBox = document.createElement("div")
-        cartImageBox.classList.add("image-box")
+            cartImage.src = itemToAddParsed.source;
+                
+            cartImage.setAttribute("height", "120px")
 
-        cartImage = document.createElement("img");
+            cartImageBox.appendChild(cartImage)
 
-        cartImage.src = itemToAddParsed.source;
-              
-        cartImage.setAttribute("height", "120px")
+            var uppercaseImageName = itemToAddParsed.name.charAt(0).toUpperCase() + itemToAddParsed.name.slice(1)
+            cartAboutBox = document.createElement("div")
+            cartAboutBox.classList.add("about")
 
-        cartImageBox.appendChild(cartImage)
+            aboutTitle = document.createElement("h1")
 
-        var uppercaseImageName = itemToAddParsed.name.charAt(0).toUpperCase() + itemToAddParsed.name.slice(1)
-        cartAboutBox = document.createElement("div")
-        cartAboutBox.classList.add("about")
+            aboutTitle.innerHTML = uppercaseImageName
+            cartAboutBox.appendChild(aboutTitle)
 
-        aboutTitle = document.createElement("h1")
+            aboutSubtitle = document.createElement("h3")
+            aboutSubtitle.innerHTML = itemToAddParsed.calories + "cal"
 
-        aboutTitle.innerHTML = uppercaseImageName
-        cartAboutBox.appendChild(aboutTitle)
-
-        aboutSubtitle = document.createElement("h3")
-        aboutSubtitle.innerHTML = itemToAddParsed.calories + "cal"
-
-        cartAboutBox.appendChild(aboutSubtitle)
+            cartAboutBox.appendChild(aboutSubtitle)
 
 
-        cartCounterBox = document.createElement("div")
-        cartCounterBox.classList.add("counter")
+            cartCounterBox = document.createElement("div")
+            cartCounterBox.classList.add("counter")
 
-        counterArray = [["bttnn","+"],["count","1"],["bttnn","-"]]
-        for(i=0; i < counterArray.length; i++){
-            counterDivs = document.createElement("div")
-            counterDivs.classList.add(counterArray[i][0])
-            counterDivs.innerHTML = counterArray[i][1]
-            cartCounterBox.appendChild(counterDivs)
-        }
+            counterArray = [["bttnn","+"],["count","1"],["bttnn","-"]]
+            for(j=0; j < counterArray.length; j++){
+                counterDivs = document.createElement("div")
+                counterDivs.classList.add(counterArray[j][0])
+                counterDivs.innerHTML = counterArray[j][1]
+                cartCounterBox.appendChild(counterDivs)
+            }
 
 
-        cartPricesBox = document.createElement("div")
-        cartPricesBox.classList.add("prices")
+            cartPricesBox = document.createElement("div")
+            cartPricesBox.classList.add("prices")
 
-        pricesArray = [["amount", itemToAddParsed.price],["save","Save for later"],["remove","remove"]]
+            pricesArray = [["amount", "$" + itemToAddParsed.price],["save","Save for later"],["remove","remove"]]
 
-        for(i=0; i < pricesArray.length; i++){
-            pricesDivs = document.createElement("div")
-            pricesDivs.classList.add(pricesArray[i][0])
-            pricesDivs.innerHTML = pricesArray[i][1]
-            cartPricesBox.appendChild(pricesDivs)
-        }
+            for(j=0; j < pricesArray.length; j++){
+                pricesDivs = document.createElement("div")
+                pricesDivs.classList.add(pricesArray[j][0])
+                pricesDivs.innerHTML = pricesArray[j][1]
+                cartPricesBox.appendChild(pricesDivs)
+            }
 
-        cartItemBox.append(cartImageBox,cartAboutBox,cartCounterBox,cartPricesBox)
-        console.log(cartItemBox)
-        $(".cart-container").append(cartItemBox)
-    }
-}
-}
-}
+            cartItemBox.append(cartImageBox,cartAboutBox,cartCounterBox,cartPricesBox)
+            $(".cart-container").append(cartItemBox)
 
-function logOut() {
-  
-    var keys = Object.keys(localStorage) // Gets items from localStorage
-    for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
-        var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
-        var itemToAddParsed = JSON.parse(itemToAdd)
-
-        if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
-            if (itemToAddParsed.currentuser == true) { // Separates item that determines if current user
-            itemToAddParsed.currentuser = false
-            localStorage.setItem(key, JSON.stringify(itemToAddParsed))
-            console.log(localStorage.getItem(key))
         }
     }
-    window.location.href = "index.html"
 }
+
+
+    function logOut() {
+    
+        var keys = Object.keys(localStorage) // Gets items from localStorage
+        for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
+            var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
+            var itemToAddParsed = JSON.parse(itemToAdd)
+
+            if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
+                if (itemToAddParsed.currentuser == true) { // Separates item that determines if current user
+                itemToAddParsed.currentuser = false
+                localStorage.setItem(key, JSON.stringify(itemToAddParsed))
+                console.log(localStorage.getItem(key))
+            }
+        }
+        window.location.href = "index.html"
+    }
 }
 
 function cartItem(item) {
     var itemToUse = localStorage.getItem(item)
     var itemToUseParsed = JSON.parse(itemToUse)
     console.log(itemToUseParsed)
+}
+
+function showLocalStorage(){
+    var keys = Object.keys(localStorage) 
+    for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
+        console.log(key)
+        var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
+        console.log(itemToAdd)
+        var itemToAddParsed = JSON.parse(itemToAdd)
+        console.log(itemToAddParsed)
+    }
 }
 
