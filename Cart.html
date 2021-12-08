@@ -6,9 +6,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Estonia&display=swap" rel="stylesheet">
         <script>
-            window.addEventListener("load", function() {
+            window.onload = function(){
             cart()
-            });
+            };
         </script>
     </head>
     <body>
@@ -46,7 +46,7 @@
                 <div class=”prices”>
                     <div class=”amount”>$13.99</div>
                     <div class=”save”><u>Save for later</u></div>
-                    <button class=”remove” onclick="newCartItem()"><u>Remove</u></button>
+                    <button class=”remove” onclick="cart()"><u>Remove</u></button>
                 </div>
             </div>
             <div class="cart-items">
@@ -84,6 +84,7 @@
             </div>
         </div>
     </section>
+    <button onclick="showLocalStorage()">Show Local Storage</button>
         <script src="script.js"></script>
     </body>
 </html>
