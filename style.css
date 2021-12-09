@@ -127,18 +127,20 @@ body {
 }
 
 .checkOut {
+    margin-right: 25px;
+    padding-top: 50px;
     justify-content: right;
-    display: block;
-    text-align: right;
     display: flex;
+    text-align: right;
 }
 
 .cartBody {
     color: rgb(201, 201, 201);
     margin-top: 75px;
-    height: 750px;
+    height: fit-content;
     justify-content: center;
     text-align: center;
+    padding-bottom: 50px;
 }
 
 .cartBody hr {
@@ -221,10 +223,12 @@ td {
 .cart-container {
     width: 70%;
     height: 85%;
+    margin-top: 1.5%;
+    padding-top: 25px;
+    margin-left: 15%;
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 0px 25px 40px maroon;
-    margin-left: 10%;
 }
 
 .cart-items {
@@ -236,6 +240,11 @@ td {
     align-items: center;
 }
 
+.cart-items img {
+    width: 120px;
+    height: 120px;
+}
+
 .image-box {
     width: 15%;
     text-align: center;
@@ -243,6 +252,7 @@ td {
 
 .about {
     height: 100%;
+    width: 5%;
 }
 
 .title {
@@ -440,4 +450,16 @@ span.price {
 
 .btnr {
     color: #E44C4C;
+}
+
+.priceLabels {
+    padding-right: 10px;
+    padding-bottom: 25px;
+}
+
+.emptyCartClass {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 50px;
+    color: black;
+    font-size: 250%;
 }

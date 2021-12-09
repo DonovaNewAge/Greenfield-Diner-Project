@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = function() {
 
     var keys = Object.keys(localStorage) // Gets items from localStorage
     for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
@@ -23,13 +23,9 @@ function menu() {
         if (itemToAddParsed.type == "admin" && itemToAddParsed.currentuser == true) { // Separates item that determines if admin
             $(".adminButtons").show(); // Separates item that determines if admin
             continue // Separates item that determines if admin
-        }
-
-        else if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
+        } else if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
             continue
-        }
-
-        else {
+        } else {
             var itemObj = JSON.parse(itemToAdd); // Gets items for the menu 
             if (itemObj.type == "item") { // Gets items for the menu
 
@@ -69,7 +65,7 @@ function menu() {
 
                 buttonAddToCart.classList.add(uppercaseImageName) // Used for styling
                 buttonAddToCart.classList.add("btn")
-                buttonAddToCart.onclick = function () {
+                buttonAddToCart.onclick = function() {
                     var itemClass = this.classList.toString()
                     console.log(itemClass)
                     var itemOnly = itemClass.substring(0, itemClass.length - 4)
@@ -80,6 +76,7 @@ function menu() {
                     itemObject.inCart = true
                     itemObject.quantity = 1
                     localStorage.setItem(itemOnly, JSON.stringify(itemObject))
+                    window.location.href = "Cart.html"
                 }
             }
         }
@@ -106,15 +103,11 @@ function checkPassword() {
             $('.adminButtons').show(); // Shows admin menu in navbar
             alert("Welcome back " + username + ".")
             localStorage.setItem(username, JSON.stringify({ "type": "admin", "fullname": fullname, "username": username, "password": password, "currentuser": true })) // For admin access persistence
-        }
-
-        else {
+        } else {
             alert("Welcome back " + username + ".")
             localStorage.setItem(username, JSON.stringify({ "type": "user", "fullname": fullname, "username": username, "password": password, "currentuser": true })) // For user access persistence
         }
-    }
-
-    else {
+    } else {
         alert("You have entered incorrect information, please try again.") // Alerts when entering wrong login info
     }
 }
@@ -131,8 +124,7 @@ function signUp() {
         key.push(fullname, entered)
         tempMap.set(username, key)
         localStorage.setItem(username, JSON.stringify({ "type": "user", "fullname": fullname, "username": username, "password": entered, "currentuser": true })) // For user access persistence
-    }
-    else {
+    } else {
         console.log("Nope")
     }
     console.log(tempMap)
@@ -179,7 +171,7 @@ function addItem() {
     itemInfo.append(nameElement, priceElement, caloriesElement, buttonAddToCart) // Adding elements to page
 
     buttonAddToCart.classList.add("btn") // Used for styling
-    $(buttonAddToCart).click(function () { // To add to cart
+    $(buttonAddToCart).click(function() { // To add to cart
         if (buttonAddToCart.classList.contains("btn")) {
             var classToFind = this.classList.toString()
             var classSliced = classToFind.substring(0, classToFind.length - 4);
@@ -190,10 +182,12 @@ function addItem() {
             itemToUseParsed.inCart = true
             itemToUseParsed.quantity = 1
             localStorage.setItem(uppercaseImageName, JSON.stringify(itemToUseParsed))
+            window.location.href = "Cart.html"
         }
     })
 
     localStorage.setItem(uppercaseImageName, JSON.stringify({ "type": "item", "source": imageURL, "inCart": false, "calories": itemCalories, "name": itemName, "price": itemPrice, "inCart": false, "quantity": 0 }))
+    window.location.href = "menuAdmin.html"
 }
 
 function removeItem() {
@@ -201,19 +195,19 @@ function removeItem() {
     var uppercaseClassName = itemToRemoveClass.charAt(0).toUpperCase() + itemToRemoveClass.slice(1)
     $("." + uppercaseClassName).remove();
     localStorage.removeItem(uppercaseClassName)
+    window.location.href = "menuAdmin.html"
 }
 
 function editItem() {
     var itemToEdit = prompt("What item would you like to edit?")
-    var AttributeToEdit = prompt("What would you like to change about it? Please enter name, price, calories, or \"source\" to change the image.")
+    var AttributeToEdit = prompt("What would you like to change about it? Please enter name, price, calories, or source to change the image.")
     var newValue = prompt("What would you like the new value to be?")
     var myObj = JSON.parse(localStorage.getItem(itemToEdit));
     if (AttributeToEdit == "name") {
         myObj.name = newValue;
         localStorage.removeItem(itemToEdit);
         localStorage.setItem(newValue, JSON.stringify(myObj));
-    }
-    else {
+    } else {
         myObj.setAttribute(AttributeToEdit, newValue)
         localStorage.setItem(itemToEdit, JSON.stringify(myObj));
     }
@@ -243,4 +237,3 @@ function cartItem(item) {
     var itemToUseParsed = JSON.parse(itemToUse)
     console.log(itemToUseParsed)
 }
-
