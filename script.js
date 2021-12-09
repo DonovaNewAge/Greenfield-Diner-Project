@@ -2,6 +2,7 @@ window.onload = function() {
 
     var keys = Object.keys(localStorage) // Gets items from localStorage
     for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
+
         var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
         var itemToAddParsed = JSON.parse(itemToAdd)
 
@@ -158,7 +159,7 @@ function addItem() {
 
     var imageURL = prompt("Please enter the image URL.") // Getting image source
     var itemName = prompt("What food is in the image?") // Getting information for the elements above
-    var itemPrice = prompt("How much should the item cost? Please include $ at the beginning.") // Getting information for the elements above
+    var itemPrice = prompt("How much should the item cost? Please exclude $ at the beginning.") // Getting information for the elements above
     var itemCalories = prompt("How many calories are in this food?") // Getting information for the elements above
 
     var uppercaseImageName = itemName.charAt(0).toUpperCase() + itemName.slice(1) // Used to unify capitalization on pages
@@ -169,7 +170,7 @@ function addItem() {
            
     imageElement.src = imageURL // Setting up HTML for elements
     nameElement.innerHTML = uppercaseImageName // Setting up HTML for elements
-    priceElement.innerHTML = itemPrice // Setting up HTML for elements
+    priceElement.innerHTML = "$" + itemPrice // Setting up HTML for elements
     caloriesElement.innerHTML = itemCalories + " cal" // Setting up HTML for elements
     buttonAddToCart.innerHTML = "ADD TO CART" // Setting up HTML for elements
 
@@ -218,24 +219,22 @@ function editItem() {
     window.location.href = "menuAdmin.html"
 } 
 
+    function logOut() {
+    
+        var keys = Object.keys(localStorage) // Gets items from localStorage
+        for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
+            var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
+            var itemToAddParsed = JSON.parse(itemToAdd)
 
-
-function logOut() {
-  
-    var keys = Object.keys(localStorage) // Gets items from localStorage
-    for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
-        var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
-        var itemToAddParsed = JSON.parse(itemToAdd)
-
-        if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
-            if (itemToAddParsed.currentuser == true) { // Separates item that determines if current user
-            itemToAddParsed.currentuser = false
-            localStorage.setItem(key, JSON.stringify(itemToAddParsed))
-            console.log(localStorage.getItem(key))
+            if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
+                if (itemToAddParsed.currentuser == true) { // Separates item that determines if current user
+                itemToAddParsed.currentuser = false
+                localStorage.setItem(key, JSON.stringify(itemToAddParsed))
+                console.log(localStorage.getItem(key))
+            }
         }
+        window.location.href = "index.html"
     }
-    window.location.href = "index.html"
-}
 }
 
 function cartItem(item) {
@@ -243,8 +242,5 @@ function cartItem(item) {
     var itemToUseParsed = JSON.parse(itemToUse)
     console.log(itemToUseParsed)
 }
-
-function addQuantity() {
-    var itemToIncrease = $(this).parent.className
 }
 
