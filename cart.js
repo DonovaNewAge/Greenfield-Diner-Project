@@ -1,5 +1,5 @@
 window.onload = function() {
-
+    var itemsArray = []
     var keys = Object.keys(localStorage) // Gets items from localStorage
     for (i = 0; i < keys.length; i++) { // Gets items from localStorage
         console.log(keys[i])
@@ -10,7 +10,17 @@ window.onload = function() {
             $(".adminButtons").show(); // Separates item that determines if admin
 // Separates item that determines if admin
         }
-        else if(itemToAddParsed.type == "item" && itemToAddParsed.inCart == true) { // Gets items for the menu
+        else if(itemToAddParsed.type == "item" && itemToAddParsed.inCart == true && itemToAddParsed.quantity > 0) { // Gets items for the menu
+
+            if (itemsArray.indexOf(itemToAddParsed.name) > -1) {
+                localStorage.removeItem(itemToAddParsed.name)
+            }
+
+            else {
+
+            itemsArray.push(itemToAddParsed.name)
+
+
             cartItemBox = document.createElement("div")
             cartItemBox.classList.add("cart-items")
 
@@ -25,7 +35,7 @@ window.onload = function() {
 
             cartImageBox.appendChild(cartImage)
 
-            var uppercaseImageName = itemToAddParsed.name.charAt(0).toUpperCase() + itemToAddParsed.name.slice(1)
+            var uppercaseImageName = keys[i].charAt(0).toUpperCase() + keys[i].slice(1)
             cartAboutBox = document.createElement("div")
             cartAboutBox.classList.add("about")
 
@@ -58,7 +68,7 @@ window.onload = function() {
         var quantity = itemToUseParsed.quantity
         var newQuantity = quantity + 1
         itemToUseParsed.quantity = newQuantity
-        localStorage.setItem(uppercaseImageName, JSON.stringify(itemToUseParsed))
+        localStorage.setItem(classSliced, JSON.stringify(itemToUseParsed))
         window.location.href = "Cart.html"
             }
     })
@@ -71,11 +81,11 @@ window.onload = function() {
 
         
         var minusButton = document.createElement("button")
-        minusButton.classList.add(uppercaseImageName)
+        minusButton.classList.add(keys[i])
         minusButton.innerHTML = "-"
         cartCounterBox.appendChild(minusButton)
         minusButton.classList.add("bttnn")
-        $(minusButton).click(function() { // To add to cart
+        minusButton.onclick = function() { // To add to cart
             if (minusButton.classList.contains("bttnn")) {
         var classToFind = this.classList.toString()
         var classSliced = classToFind.substring(0, classToFind.length-6);
@@ -85,11 +95,13 @@ window.onload = function() {
         var quantity = itemParsed.quantity
         var newQuantity = quantity - 1
         itemParsed.quantity = newQuantity
-
-        localStorage.setItem(uppercaseImageName, JSON.stringify(itemParsed))
+        if (itemParsed.quantity < 1) {
+            itemParsed.inCart = false
+        }
+        localStorage.setItem(classSliced, JSON.stringify(itemParsed))
         window.location.href = "Cart.html"
             }
-        })
+        }
 
         $("." + uppercaseImageName)
        
@@ -98,18 +110,41 @@ window.onload = function() {
         cartPricesBox = document.createElement("div")
         cartPricesBox.classList.add("prices")
 
-        pricesArray = [["amount", itemToAddParsed.price],["save","Save for later"],["remove","remove"]]
 
-        for(j=0; j < pricesArray.length; j++){
-            pricesDivs = document.createElement("div")
-            pricesDivs.classList.add(pricesArray[j][0])
-            pricesDivs.innerHTML = pricesArray[j][1]
-            cartPricesBox.appendChild(pricesDivs)
-        }
+        var amountContainer = document.createElement("div")
 
-        cartItemBox.append(cartImageBox,cartAboutBox,cartCounterBox,cartPricesBox)
+        var amount = document.createElement("div")
+        amount.innerHTML = itemToAddParsed.price
+        amount.classList.add("amount")
+
+        var save = document.createElement("a")
+        save.innerHTML = "Save for Later"
+        save.classList.add("save")
+
+        var blankline = document.createElement("br")
+
+        var remove = document.createElement("button")
+        remove.innerHTML = "Remove"
+        remove.classList.add(uppercaseImageName)
+        remove.classList.add("btnr")
+        remove.onclick = function() {
+            if (remove.classList.contains("btnr")) {
+            var classToFind = this.classList.toString()
+            var classSliced = classToFind.substring(0, classToFind.length-5)
+            var itemSliced = localStorage.getItem(classSliced)
+            var itemToUseParsed = JSON.parse(itemSliced)
+            console.log(classSliced)
+            console.log(itemToUseParsed)
+            var newQuantity = 0
+            itemToUseParsed.quantity = newQuantity
+            itemToAddParsed.inCart = false
+            localStorage.setItem(classSliced, JSON.stringify(itemToUseParsed))
+            window.location.href = "Cart.html"
+            }}
+        amountContainer.append(amount,save,blankline,remove)
+        cartItemBox.append(cartImageBox,cartAboutBox,cartCounterBox,amountContainer)
         $(".cart-container").append(cartItemBox)
-
         }
     }
 }
+    }
