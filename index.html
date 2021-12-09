@@ -1,26 +1,41 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Estonia&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <section class="stickynav">
-            <div class="navContent">
-                <a href="index.html" class="selected">Home</a>
-                <a href="menu.html">Menu</a>
-                <a href="hours.html">Hours</a>
-                <a href="Cart.html">Cart</a>
-                <a class="adminButtons" href="menuAdmin.html">Admin Menu</a>
-            </div>    
-        </section>
-        <script src="script.js"></script>
 
-        <div class="log">
-        <img src="bulldog10.png" class="bdlogo">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Estonia&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section class="stickynav">
+        <div class="navContent">
+            <a href="index.html" class="selected">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="hours.html">Hours</a>
+            <a href="Cart.html">Cart</a>
+            <a class="adminButtons" href="menuAdmin.html">Admin Menu</a>
         </div>
+
+    </section>
+    <script src="script.js"></script>
+
+    <div class="log">
+        <img src="bulldog10.png" class="bdlogo">
+    </div>
+    <h1>Greenfield Diner</h1>
+    <div class="container">
+        <div class="conten">
+            <h2>Login</h2>
+            <div>
+
+                <form id="login">
+                    Username:<br>
+                    <input type="text" id="username" required="" name="username">
+                    <br>
+                    Password:<br>
+                    <input type="password" id="password" required="" name="password">
         <h1>Greenfield Diner</h1>
         <div class="container">
             <div class="conten">
@@ -42,10 +57,21 @@
              <button id="#signup" class="sign-up" onclick="reel()" >
              <a href="#signup">Sign-Up  &#8595;</a>
             </button>
+
             </div>
+            <br>
+            <button class="logbutton" type="submit" onclick="checkPassword()">Log-In</button>
+            <iframe id="loginframe" name="loginframe" src="#"></iframe>
+            </form>
+
+            <button class="logbutton" style="margin-top: 10px; margin-bottom: 10px;" onclick="logOut()">Log Out</button>
+
+            <br>
+            <a href="#signup" onclick="reel()">Sign-Up</a>
         </div>
-        <div class="container" id="signup">
-            <div class="conten2">
+    </div>
+    <div class="container" id="signup">
+        <div class="conten2">
             <h2>Sign-Up</h2>
             <div>
                 <p>Full Name:</p>
@@ -61,5 +87,6 @@
         </div>
     </div>
 
-    </body>
+</body>
+
 </html>
