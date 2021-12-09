@@ -27,7 +27,7 @@
          <h2>Login</h2>
              <div>
              
-            <form id="login" onsubmit="checkPassword()">
+            <form id="login">
                 Username:<br>
              <input type="text" id="username" required="" name="username">
              <br> 
@@ -35,7 +35,7 @@
              <input type="password" id="password" required="" name="password">
             </div> 
              <br> 
-             <button class="logbutton" type="submit">Log-In</button>
+             <button class="logbutton" type="submit" onclick="checkPassword()">Log-In</button>
              <iframe id="loginframe" name="loginframe" src="#"></iframe>
             </form>
              
