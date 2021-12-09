@@ -18,15 +18,18 @@ body {
     width: 900px;
 }
 
-.conten {
-    background: rgb(128, 0, 0);
-    border: 1px solid #c4c6ca;
-    margin: 0 auto;
-    padding: 25px 0 0;
-    position: relative;
-    text-align: center;
-    width: 400px;
-    height: 270px;
+.conten{
+    background: rgb(128,0,0);
+  border: 1px solid #c4c6ca;
+  margin: 0 auto;
+  padding: 25px 0 0;
+  position: relative;
+  text-align: center;
+  width: 400px;
+  height: 270px;
+  box-shadow: 5px 5px black;
+  border-radius: 5%;
+
 }
 
 #signup {
@@ -42,6 +45,8 @@ body {
     text-align: center;
     width: 400px;
     height: 500px;
+    box-shadow: 5px 5px black;
+    border-radius: 5%;
 }
 
 .conten a {
@@ -67,14 +72,58 @@ body {
     padding-left: 41%;
 }
 
-.logbutton {
-    width: 80%;
-    border-radius: 12px;
-}
 
+.logbutton{
+    padding-top: 5px;
+
+    width: 80%;
+}
+.sign-up a{
+    text-decoration: none;
+}
+.sign-up a:hover{
+    color: white;
+}
+.sign-up{
+    background-color: white;
+    border: none;
+    color: #fff;
+    text-align: center;
+    width: 80%;
+    transition: all 0.5s;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+    padding-top: 5px;
+}
+.sign-up{
+    cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.sign-up::after{
+  position: absolute;
+  opacity: 0;  
+  top: 14px;
+  right: -20px;
+  transition: 0.5s;
+}
+.sign-up:hover{
+   background-color: grey;
+    padding-right: 24px;
+  padding-left:8px;
+  color: white;
+}
+.sign-up:hover::after{
+    opacity: 1;
+  right: 10px;
+}
 .logbutton:hover {
     background-color: grey;
     color: white;
+    transition: 0.5s;
+    padding-right: 24px;
+    padding-left:8px;
 }
 
 .content a {
@@ -190,13 +239,19 @@ body {
     padding-right: 5%;
 }
 
+
 .storehours table,
 th,
 td {
     border: 3px solid black;
+=======
+.storehours table,th,td{
+    border: 2px solid maroon  ;
+
     border-collapse: collapse;
     color: maroon;
     background-color: white;
+    box-shadow: 5px 5px black;
 }
 
 .storehours table {
@@ -230,6 +285,7 @@ td {
     border-radius: 20px;
     box-shadow: 0px 25px 40px maroon;
 }
+
 
 .cart-items {
     margin: auto;
@@ -374,9 +430,16 @@ td {
     padding: 5px 20px 15px 20px;
     border: 1px solid lightgrey;
     border-radius: 3px;
+
 }
 
 .inp[type=text] {
+
+    box-shadow: 5px 5px black;
+  }
+  
+  .inp[type=text] {
+
     width: 100%;
     margin-bottom: 20px;
     padding: 12px;
@@ -393,6 +456,7 @@ label {
     margin-bottom: 20px;
     padding: 7px 0;
     font-size: 24px;
+
 }
 
 .bton {
@@ -411,7 +475,17 @@ label {
     background-color: #45a049;
 }
 
-a {
+  
+  .bton:hover {
+    background-color: grey;
+    transition: 0.5s;
+    padding-right: 24px;
+    padding-left:8px;
+    color: white;
+
+  }
+  
+  a {
     color: #2196F3;
 }
 
