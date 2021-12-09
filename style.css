@@ -28,6 +28,8 @@ body{
   text-align: center;
   width: 400px;
   height: 270px;
+  box-shadow: 5px 5px black;
+  border-radius: 5%;
 }
 
 #signup{
@@ -43,6 +45,8 @@ body{
     text-align: center;
     width: 400px;
     height: 500px;
+    box-shadow: 5px 5px black;
+    border-radius: 5%;
 }
 
 .conten a{
@@ -69,13 +73,55 @@ body{
 }
 
 .logbutton{
+    padding-top: 5px;
     width: 80%;
-    border-radius: 12px;
 }
-
+.sign-up a{
+    text-decoration: none;
+}
+.sign-up a:hover{
+    color: white;
+}
+.sign-up{
+    background-color: white;
+    border: none;
+    color: #fff;
+    text-align: center;
+    width: 80%;
+    transition: all 0.5s;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+    padding-top: 5px;
+}
+.sign-up{
+    cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.sign-up::after{
+  position: absolute;
+  opacity: 0;  
+  top: 14px;
+  right: -20px;
+  transition: 0.5s;
+}
+.sign-up:hover{
+   background-color: grey;
+    padding-right: 24px;
+  padding-left:8px;
+  color: white;
+}
+.sign-up:hover::after{
+    opacity: 1;
+  right: 10px;
+}
 .logbutton:hover {
     background-color: grey;
     color: white;
+    transition: 0.5s;
+    padding-right: 24px;
+    padding-left:8px;
 }
 
 .content a{
@@ -190,10 +236,11 @@ body{
     padding-right: 5%;
 }
 .storehours table,th,td{
-    border: 3px solid black ;
+    border: 2px solid maroon  ;
     border-collapse: collapse;
     color: maroon;
     background-color: white;
+    box-shadow: 5px 5px black;
 }
 .storehours table{
     width: 100%;
@@ -220,8 +267,9 @@ body{
  height: 85%;
  background-color: #ffffff;
  border-radius: 20px;
- box-shadow: 0px 25px 40px maroon;
+ box-shadow: 5px 5px 5px 5px black;
  margin-left: 10%;
+
 }
 .cart-items{
     margin: auto;
@@ -348,6 +396,7 @@ body{
     padding: 5px 20px 15px 20px;
     border: 1px solid lightgrey;
     border-radius: 3px;
+    box-shadow: 5px 5px black;
   }
   
   .inp[type=text] {
@@ -370,8 +419,8 @@ body{
   }
   
   .bton {
-    background-color: #04AA6D;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 12px;
     margin: 10px 0;
     border: none;
@@ -382,7 +431,12 @@ body{
   }
   
   .bton:hover {
-    background-color: #45a049;
+    background-color: grey;
+    transition: 0.5s;
+    padding-right: 24px;
+    padding-left:8px;
+    color: white;
+
   }
   
   a {
