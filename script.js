@@ -46,15 +46,13 @@ function menu() {
             var itemName = itemObj.name // Getting information for the elements above
             var itemCalories = itemObj.calories // Getting information for the elements above
             var itemPrice = itemObj.price // Getting information for the elements above
-
-            var uppercaseImageName = itemName.charAt(0).toUpperCase() + itemName.slice(1) // Used to unify capitalization on pages
             
             itemContainer.classList.add("shop-item") // Adding classes for CSS
-            itemContainer.classList.add(uppercaseImageName) // Adding classes for CSS
+            itemContainer.classList.add(itemName) // Adding classes for CSS
             itemInfo.classList.add("shop-item-info") // Adding classes for CSS
            
             imageElement.src = imageURL // Setting up HTML for elements
-            nameElement.innerHTML = uppercaseImageName // Setting up HTML for elements
+            nameElement.innerHTML = itemName // Setting up HTML for elements
             priceElement.innerHTML = itemPrice // Setting up HTML for elements
             caloriesElement.innerHTML = itemCalories + " cal" // Setting up HTML for elements
             buttonAddToCart.innerHTML = "ADD TO CART" // Setting up HTML for elements
@@ -80,6 +78,17 @@ function menu() {
         }
     }
 }
+
+// function addToCartButton(key){
+//     console.log(key)
+//     var itemToUse = localStorage.getItem(key)
+//     var itemToUseParsed = JSON.parse(itemToUse)
+//     console.log(itemToUseParsed)
+//     itemToUseParsed.inCart = true
+//     itemToUseParsed.quantity = 1
+//     localStorage.setItem(key, JSON.stringify(itemToUseParsed))
+
+// }
 
 
 const tempMap = new Map([
@@ -158,14 +167,14 @@ function addItem() {
     var itemPrice = prompt("How much should the item cost? Please exclude $ at the beginning.") // Getting information for the elements above
     var itemCalories = prompt("How many calories are in this food?") // Getting information for the elements above
 
-    var uppercaseImageName = itemName.charAt(0).toUpperCase() + itemName.slice(1) // Used to unify capitalization on pages
+    itemName = itemName.charAt(0).toUpperCase() + itemName.slice(1) // Used to unify capitalization on pages
             
     itemContainer.classList.add("shop-item") // Adding classes for CSS
-    itemContainer.classList.add(uppercaseImageName) // Adding classes for CSS
+    itemContainer.classList.add(itemName) // Adding classes for CSS
     itemInfo.classList.add("shop-item-info") // Adding classes for CSS
            
     imageElement.src = imageURL // Setting up HTML for elements
-    nameElement.innerHTML = uppercaseImageName // Setting up HTML for elements
+    nameElement.innerHTML = itemName // Setting up HTML for elements
     priceElement.innerHTML = "$" + itemPrice // Setting up HTML for elements
     caloriesElement.innerHTML = itemCalories + " cal" // Setting up HTML for elements
     buttonAddToCart.innerHTML = "ADD TO CART" // Setting up HTML for elements
@@ -175,16 +184,16 @@ function addItem() {
     itemInfo.append(nameElement, priceElement, caloriesElement, buttonAddToCart) // Adding elements to page
 
     buttonAddToCart.classList.add("btn") // Used for styling
-    $("." + uppercaseImageName).click(function() { // To add to cart
-        var itemToUse = localStorage.getItem(uppercaseImageName)
+    $("." + itemName).click(function() { // To add to cart
+        var itemToUse = localStorage.getItem(itemName)
         var itemToUseParsed = JSON.parse(itemToUse)
         console.log(itemToUseParsed)
         itemToUseParsed.inCart = true
         itemToUseParsed.quantity = 1
-        localStorage.setItem(uppercaseImageName, JSON.stringify(itemToUseParsed))
+        localStorage.setItem(itemName, JSON.stringify(itemToUseParsed))
     })
 
-    localStorage.setItem(uppercaseImageName, JSON.stringify({"type": "item", "source": imageURL, "inCart": false, "calories": itemCalories, "name": itemName, "price": itemPrice, "inCart": false, "quantity": 0}))
+    localStorage.setItem(itemName, JSON.stringify({"type": "item", "source": imageURL, "inCart": false, "calories": itemCalories, "name": itemName, "price": itemPrice, "inCart": false, "quantity": 0}))
 }
 
 function removeItem() {
