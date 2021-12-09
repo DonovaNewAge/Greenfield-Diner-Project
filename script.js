@@ -66,20 +66,24 @@ function menu() {
             itemInfo.appendChild(caloriesElement) // Adding elements to page
             itemInfo.appendChild(buttonAddToCart) // Adding elements to page
 
-            buttonAddToCart.classList.add("btn") // Used for styling
-            $("." + uppercaseImageName).click(function() { // To add to cart
-                var itemToUse = localStorage.getItem(uppercaseImageName)
-                var itemToUseParsed = JSON.parse(itemToUse)
-                console.log(itemToUseParsed)
-                itemToUseParsed.inCart = true
-                itemToUseParsed.quantity = 1
-                localStorage.setItem(uppercaseImageName, JSON.stringify(itemToUseParsed))
-            })
+            buttonAddToCart.classList.add(uppercaseImageName) // Used for styling
+            buttonAddToCart.classList.add("btn")
+            buttonAddToCart.onclick = function() {
+                var itemClass = this.classList.toString()
+                console.log(itemClass)
+                var itemOnly = itemClass.substring(0, itemClass.length-4)
+                console.log(itemOnly)
+                var itemStored = localStorage.getItem(itemOnly)
+                console.log(itemStored)
+                var itemObject = JSON.parse(itemStored)
+                itemObject.inCart = true
+                itemObject.quantity = 1
+                localStorage.setItem(itemOnly, JSON.stringify(itemObject))
+            }
             }
         }
     }
 }
-
 
 const tempMap = new Map([
     ["joeldw9", ["Joel Wilkerson", "sweaty"]], // List of users, increases through localStorage but includes these hardcoded
@@ -174,14 +178,18 @@ function addItem() {
     itemInfo.append(nameElement, priceElement, caloriesElement, buttonAddToCart) // Adding elements to page
 
     buttonAddToCart.classList.add("btn") // Used for styling
-    $("." + uppercaseImageName).click(function() { // To add to cart
-        var itemToUse = localStorage.getItem(uppercaseImageName)
+    $(buttonAddToCart).click(function() { // To add to cart
+        if (buttonAddToCart.classList.contains("btn")) {
+        var classToFind = this.classList.toString()
+        var classSliced = classToFind.substring(0, classToFind.length-4);
+        var itemToUse = localStorage.getItem(classSliced)
+        console.log(classSliced)
         var itemToUseParsed = JSON.parse(itemToUse)
         console.log(itemToUseParsed)
         itemToUseParsed.inCart = true
         itemToUseParsed.quantity = 1
         localStorage.setItem(uppercaseImageName, JSON.stringify(itemToUseParsed))
-    })
+    }})
 
     localStorage.setItem(uppercaseImageName, JSON.stringify({"type": "item", "source": imageURL, "inCart": false, "calories": itemCalories, "name": itemName, "price": itemPrice, "inCart": false, "quantity": 0}))
 }
@@ -211,84 +219,6 @@ function editItem() {
 } 
 
 
-  function cart() {
-    var keys = Object.keys(localStorage) // Gets items from localStorage
-    for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
-        var itemToAdd = localStorage.getItem(key) // Gets items from localStorage
-        var itemToAddParsed = JSON.parse(itemToAdd)
-        console.log(itemToAddParsed)
-        if (itemToAddParsed.type == "admin" && itemToAddParsed.currentuser == true) { // Separates item that determines if admin
-            $(".adminButtons").show(); // Separates item that determines if admin
-            continue // Separates item that determines if admin
-        }
-
-        else if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
-            continue
-        }
-
-        else { 
-            var itemObj = JSON.parse(itemToAdd); // Gets items for the menu 
-            if (itemObj.type == "item" && itemObj.inCart == true) { // Gets items for the menu
-        cartItemBox = document.createElement("div")
-        cartItemBox.classList.add("cart-items")
-
-        cartImageBox = document.createElement("div")
-        cartImageBox.classList.add("image-box")
-
-        cartImage = document.createElement("img");
-
-        cartImage.src = itemToAddParsed.source;
-              
-        cartImage.setAttribute("height", "120px")
-
-        cartImageBox.appendChild(cartImage)
-
-        var uppercaseImageName = itemToAddParsed.name.charAt(0).toUpperCase() + itemToAddParsed.name.slice(1)
-        cartAboutBox = document.createElement("div")
-        cartAboutBox.classList.add("about")
-
-        aboutTitle = document.createElement("h1")
-
-        aboutTitle.innerHTML = uppercaseImageName
-        cartAboutBox.appendChild(aboutTitle)
-
-        aboutSubtitle = document.createElement("h3")
-        aboutSubtitle.innerHTML = itemToAddParsed.calories + "cal"
-
-        cartAboutBox.appendChild(aboutSubtitle)
-
-
-        cartCounterBox = document.createElement("div")
-        cartCounterBox.classList.add("counter")
-
-        counterArray = [["bttnn","+"],["count","1"],["bttnn","-"]]
-        for(i=0; i < counterArray.length; i++){
-            counterDivs = document.createElement("div")
-            counterDivs.classList.add(counterArray[i][0])
-            counterDivs.innerHTML = counterArray[i][1]
-            cartCounterBox.appendChild(counterDivs)
-        }
-
-
-        cartPricesBox = document.createElement("div")
-        cartPricesBox.classList.add("prices")
-
-        pricesArray = [["amount", itemToAddParsed.price],["save","Save for later"],["remove","remove"]]
-
-        for(i=0; i < pricesArray.length; i++){
-            pricesDivs = document.createElement("div")
-            pricesDivs.classList.add(pricesArray[i][0])
-            pricesDivs.innerHTML = pricesArray[i][1]
-            cartPricesBox.appendChild(pricesDivs)
-        }
-
-        cartItemBox.append(cartImageBox,cartAboutBox,cartCounterBox,cartPricesBox)
-        console.log(cartItemBox)
-        $(".cart-container").append(cartItemBox)
-    }
-}
-}
-}
 
 function logOut() {
   
@@ -312,5 +242,9 @@ function cartItem(item) {
     var itemToUse = localStorage.getItem(item)
     var itemToUseParsed = JSON.parse(itemToUse)
     console.log(itemToUseParsed)
+}
+
+function addQuantity() {
+    var itemToIncrease = $(this).parent.className
 }
 
