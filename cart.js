@@ -1,5 +1,7 @@
-window.onload = function () {
+window.onload = function() {
     var itemsArray = []
+    var orderArray = []
+    var total = 0
     var keys = Object.keys(localStorage) // Gets items from localStorage
     for (i = 0; i < keys.length; i++) { // Gets items from localStorage
         console.log(keys[i])
@@ -9,14 +11,12 @@ window.onload = function () {
         if (itemToAddParsed.type == "admin" && itemToAddParsed.currentuser == true) { // Separates item that determines if admin
             $(".adminButtons").show(); // Separates item that determines if admin
             // Separates item that determines if admin
-        }
-        else if (itemToAddParsed.type == "item" && itemToAddParsed.inCart == true && itemToAddParsed.quantity > 0) { // Gets items for the menu
+        } else if (itemToAddParsed.type == "item" && itemToAddParsed.inCart == true && itemToAddParsed.quantity > 0) { // Gets items for the menu
 
             if (itemsArray.indexOf(itemToAddParsed.name) > -1) {
                 localStorage.removeItem(itemToAddParsed.name)
-            }
 
-            else {
+            } else {
 
                 itemsArray.push(itemToAddParsed.name)
 
@@ -58,7 +58,7 @@ window.onload = function () {
                 cartCounterBox.appendChild(plusButton)
                 plusButton.classList.add(uppercaseImageName)
                 plusButton.classList.add("bttnn")
-                $(plusButton).click(function () { // To add to cart
+                $(plusButton).click(function() { // To add to cart
                     if (plusButton.classList.contains("bttnn")) {
                         var classToFind = this.classList.toString()
                         var classSliced = classToFind.substring(0, classToFind.length - 6);
@@ -85,7 +85,7 @@ window.onload = function () {
                 minusButton.innerHTML = "-"
                 cartCounterBox.appendChild(minusButton)
                 minusButton.classList.add("bttnn")
-                minusButton.onclick = function () { // To add to cart
+                minusButton.onclick = function() { // To add to cart
                     if (minusButton.classList.contains("bttnn")) {
                         var classToFind = this.classList.toString()
                         var classSliced = classToFind.substring(0, classToFind.length - 6);
@@ -105,6 +105,18 @@ window.onload = function () {
 
                 $("." + uppercaseImageName)
 
+                var quantity = parseFloat(itemToAddParsed.quantity)
+
+                console.log(quantity)
+
+                var price = parseFloat(itemToAddParsed.price.replace("$", ""))
+
+                console.log(price)
+
+                var itemTotal = price * quantity
+
+                total = total + itemTotal
+                console.log(total)
 
 
                 cartPricesBox = document.createElement("div")
@@ -113,9 +125,9 @@ window.onload = function () {
 
                 var amountContainer = document.createElement("div")
 
-                var amount = document.createElement("div")
-                amount.innerHTML = itemToAddParsed.price
-                amount.classList.add("amount")
+                var amountOfItem = document.createElement("div")
+                amountOfItem.innerHTML = itemToAddParsed.price
+                amountOfItem.classList.add("amount")
 
                 var save = document.createElement("a")
                 save.innerHTML = "Save for Later"
@@ -127,7 +139,7 @@ window.onload = function () {
                 remove.innerHTML = "Remove"
                 remove.classList.add(uppercaseImageName)
                 remove.classList.add("btnr")
-                remove.onclick = function () {
+                remove.onclick = function() {
                     if (remove.classList.contains("btnr")) {
                         var classToFind = this.classList.toString()
                         var classSliced = classToFind.substring(0, classToFind.length - 5)
@@ -142,9 +154,13 @@ window.onload = function () {
                         window.location.href = "Cart.html"
                     }
                 }
-                amountContainer.append(amount, save, blankline, remove)
+                amountContainer.append(amountOfItem, save, blankline, remove)
                 cartItemBox.append(cartImageBox, cartAboutBox, cartCounterBox, amountContainer)
                 $(".cart-container").append(cartItemBox)
+
+                orderArray.push(itemToAddParsed)
+
+
             }
 
     })
@@ -223,4 +239,66 @@ window.onload = function () {
 
         }
     }
+
+    if (total == 0) {
+        var emptyCart = document.createElement("div")
+        emptyCart.classList.add("emptyCartClass")
+        emptyCart.innerHTML = "Your cart is empty."
+        $(".cart-container").append(emptyCart)
+    }
+
+    var tax = (total * 0.06).toFixed(2)
+
+    var totalWithTax = (parseFloat(total) + parseFloat(tax)).toFixed(2)
+
+    var checkoutContainer = document.createElement("div")
+    checkoutContainer.classList.add("checkOut")
+
+    var labelsContainer = document.createElement("div")
+    labelsContainer.classList.add("priceLabels")
+
+    var label1 = document.createElement("p")
+    label1.innerHTML = "Subtotal:"
+
+    var label2 = document.createElement("p")
+    label2.innerHTML = "Tax:"
+
+    var label3 = document.createElement("p")
+    label3.innerHTML = "Total:"
+
+    var pricesContainer = document.createElement("div")
+    pricesContainer.classList.add("priceAmounts")
+
+    var amount1 = document.createElement("p")
+    amount1.innerHTML = " $" + total.toFixed(2)
+
+    var amount2 = document.createElement("p")
+    amount2.innerHTML = " $" + tax
+
+    var amount3 = document.createElement("p")
+    amount3.innerHTML = " $" + totalWithTax
+
+    $(".cart-container").append(checkoutContainer)
+
+    checkoutContainer.append(labelsContainer, pricesContainer)
+
+    labelsContainer.append(label1, label2, label3)
+
+    pricesContainer.append(amount1, amount2, amount3)
+
+    localStorage.setItem("order", JSON.stringify({
+        "type": "order",
+        "beforeTax": total,
+        "tax": tax,
+        "afterTax": totalWithTax,
+        "orderStatus": "prePayment",
+        "orderItems": orderArray
+    }))
+
+    var checkoutButton = document.createElement("button")
+    checkoutButton.innerHTML = "Check Out"
+    pricesContainer.append(checkoutButton)
+    checkoutButton.addEventListener("click", function() {
+        window.location.href = "payment.html"
+    })
 }
