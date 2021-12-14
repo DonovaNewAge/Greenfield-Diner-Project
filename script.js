@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
 
     var keys = Object.keys(localStorage) // Gets items from localStorage
     for (i = 0; key = keys[i]; i++) { // Gets items from localStorage
@@ -23,61 +23,14 @@ function menu() {
         if (itemToAddParsed.type == "admin" && itemToAddParsed.currentuser == true) { // Separates item that determines if admin
             $(".adminButtons").show(); // Separates item that determines if admin
             continue // Separates item that determines if admin
-        } else if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
+        }
+        else if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
             continue
-        } else {
+        }
+        else {
             var itemObj = JSON.parse(itemToAdd); // Gets items for the menu 
             if (itemObj.type == "item") { // Gets items for the menu
 
-
-            var shop = document.getElementById("shop-items") // Gets the menu content area
-            var itemContainer = document.createElement("div") // Container for image
-            var itemInfo = document.createElement("div") // Container for information and add to cart button
-            var imageElement = document.createElement('img') // Will house image for the item
-            var nameElement = document.createElement("p") // Will house info for the item
-            var priceElement = document.createElement("p") // Will house info for the item
-            var caloriesElement = document.createElement("p") // Will house info for the item
-            var buttonAddToCart = document.createElement("button") // Will house info for the item
-
-            var imageURL = itemObj.source // Getting information for the elements above
-            var itemName = itemObj.name // Getting information for the elements above
-            var itemCalories = itemObj.calories // Getting information for the elements above
-            var itemPrice = "$" + itemObj.price // Getting information for the elements above
-
-            var uppercaseImageName = itemName.charAt(0).toUpperCase() + itemName.slice(1) // Used to unify capitalization on pages
-            
-            itemContainer.classList.add("shop-item") // Adding classes for CSS
-            itemContainer.classList.add(uppercaseImageName) // Adding classes for CSS
-            itemInfo.classList.add("shop-item-info") // Adding classes for CSS
-           
-            imageElement.src = imageURL // Setting up HTML for elements
-            nameElement.innerHTML = uppercaseImageName // Setting up HTML for elements
-            priceElement.innerHTML = itemPrice // Setting up HTML for elements
-            caloriesElement.innerHTML = itemCalories + " cal" // Setting up HTML for elements
-            buttonAddToCart.innerHTML = "ADD TO CART" // Setting up HTML for elements
-
-            shop.appendChild(itemContainer) // Adding elements to page
-            itemContainer.appendChild(imageElement) // Adding elements to page
-            itemContainer.appendChild(itemInfo) // Adding elements to page
-            itemInfo.appendChild(nameElement) // Adding elements to page
-            itemInfo.appendChild(priceElement) // Adding elements to page
-            itemInfo.appendChild(caloriesElement) // Adding elements to page
-            itemInfo.appendChild(buttonAddToCart) // Adding elements to page
-
-            buttonAddToCart.classList.add(uppercaseImageName) // Used for styling
-            buttonAddToCart.classList.add("btn")
-            buttonAddToCart.onclick = function() {
-                var itemClass = this.classList.toString()
-                console.log(itemClass)
-                var itemOnly = itemClass.substring(0, itemClass.length-4)
-                console.log(itemOnly)
-                var itemStored = localStorage.getItem(itemOnly)
-                console.log(itemStored)
-                var itemObject = JSON.parse(itemStored)
-                itemObject.inCart = true
-                itemObject.quantity = 1
-                localStorage.setItem(itemOnly, JSON.stringify(itemObject))
-            }
 
                 var shop = document.getElementById("shop-items") // Gets the menu content area
                 var itemContainer = document.createElement("div") // Container for image
@@ -91,7 +44,7 @@ function menu() {
                 var imageURL = itemObj.source // Getting information for the elements above
                 var itemName = itemObj.name // Getting information for the elements above
                 var itemCalories = itemObj.calories // Getting information for the elements above
-                var itemPrice = itemObj.price // Getting information for the elements above
+                var itemPrice = "$" + itemObj.price // Getting information for the elements above
 
                 var uppercaseImageName = itemName.charAt(0).toUpperCase() + itemName.slice(1) // Used to unify capitalization on pages
 
@@ -115,7 +68,7 @@ function menu() {
 
                 buttonAddToCart.classList.add(uppercaseImageName) // Used for styling
                 buttonAddToCart.classList.add("btn")
-                buttonAddToCart.onclick = function() {
+                buttonAddToCart.onclick = function () {
                     var itemClass = this.classList.toString()
                     console.log(itemClass)
                     var itemOnly = itemClass.substring(0, itemClass.length - 4)
@@ -126,7 +79,6 @@ function menu() {
                     itemObject.inCart = true
                     itemObject.quantity = 1
                     localStorage.setItem(itemOnly, JSON.stringify(itemObject))
-                    window.location.href = "Cart.html"
                 }
             }
         }
@@ -221,7 +173,7 @@ function addItem() {
     itemInfo.append(nameElement, priceElement, caloriesElement, buttonAddToCart) // Adding elements to page
 
     buttonAddToCart.classList.add("btn") // Used for styling
-    $(buttonAddToCart).click(function() { // To add to cart
+    $(buttonAddToCart).click(function () { // To add to cart
         if (buttonAddToCart.classList.contains("btn")) {
             var classToFind = this.classList.toString()
             var classSliced = classToFind.substring(0, classToFind.length - 4);

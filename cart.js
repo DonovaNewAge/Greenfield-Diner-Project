@@ -162,8 +162,8 @@ window.onload = function() {
 
 
             }
-
-    })
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    }
         
         var counter = document.createElement("div")
         counter.classList.add("count")
@@ -301,4 +301,3 @@ window.onload = function() {
     checkoutButton.addEventListener("click", function() {
         window.location.href = "payment.html"
     })
-}
