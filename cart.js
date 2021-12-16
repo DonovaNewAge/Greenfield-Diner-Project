@@ -168,11 +168,8 @@ window.onload = function () {
             }
         }
     }
-}
     
- 
-
-if (total = 0) {
+    if (total < 1) {
     var emptyCart = document.createElement("div")
     emptyCart.classList.add("emptyCartClass")
     emptyCart.innerHTML = "Your cart is empty."
@@ -234,3 +231,9 @@ checkoutButton.addEventListener("click", function () {
         "orderItems": orderArray,
         "orderDelivery": false
     }))
+
+    
+}
+    
+ 
+
