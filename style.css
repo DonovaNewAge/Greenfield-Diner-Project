@@ -464,3 +464,23 @@ span.price {
     color: black;
     font-size: 250%;
 }
+
+.headerText {
+    padding-top: 150px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: center;
+}
+
+.order-item p {
+    width: 100px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.test {
+    width: 50%;
+    margin-left: 25%;
+}

@@ -43,7 +43,7 @@ window.onload = function () {
 
                 aboutTitle = document.createElement("h1")
 
-                aboutTitle.innerHTML = uppercaseImageName
+                aboutTitle.innerHTML = uppercaseImageName.replace("_", " ")
                 cartAboutBox.appendChild(aboutTitle)
 
                 aboutSubtitle = document.createElement("h3")
@@ -216,14 +216,17 @@ labelsContainer.append(label1, label2, label3)
 
 pricesContainer.append(amount1, amount2, amount3)
 
-localStorage.setItem("order", JSON.stringify({
-    "type": "order",
-    "beforeTax": total,
-    "tax": tax,
-    "afterTax": totalWithTax,
-    "orderStatus": "prePayment",
-    "orderItems": orderArray
-}))
+
+    localStorage.setItem("order", JSON.stringify({
+        "type": "order",
+        "beforeTax": total,
+        "tax": tax,
+        "afterTax": totalWithTax,
+        "orderStatus": "prePayment",
+        "orderItems": orderArray,
+        "orderDelivery": false
+    }))
+
 
 var checkoutButton = document.createElement("button")
 checkoutButton.innerHTML = "Check Out"
