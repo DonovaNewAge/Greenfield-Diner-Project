@@ -24,63 +24,63 @@ function menu() {
             $(".adminButtons").show(); // Separates item that determines if admin
             continue // Separates item that determines if admin
         }
-        else if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
-            continue
-        }
-        else {
+        else if (itemToAddParsed.type == "item") {
             var itemObj = JSON.parse(itemToAdd); // Gets items for the menu 
-            if (itemObj.type == "item") { // Gets items for the menu
 
+            var shop = document.getElementById("shop-items") // Gets the menu content area
+            var itemContainer = document.createElement("div") // Container for image
+            var itemInfo = document.createElement("div") // Container for information and add to cart button
+            var imageElement = document.createElement('img') // Will house image for the item
+            var nameElement = document.createElement("p") // Will house info for the item
+            var priceElement = document.createElement("p") // Will house info for the item
+            var caloriesElement = document.createElement("p") // Will house info for the item
+            var buttonAddToCart = document.createElement("button") // Will house info for the item
 
-                var shop = document.getElementById("shop-items") // Gets the menu content area
-                var itemContainer = document.createElement("div") // Container for image
-                var itemInfo = document.createElement("div") // Container for information and add to cart button
-                var imageElement = document.createElement('img') // Will house image for the item
-                var nameElement = document.createElement("p") // Will house info for the item
-                var priceElement = document.createElement("p") // Will house info for the item
-                var caloriesElement = document.createElement("p") // Will house info for the item
-                var buttonAddToCart = document.createElement("button") // Will house info for the item
+            var imageURL = itemObj.source // Getting information for the elements above
+            var itemName = itemObj.name // Getting information for the elements above
+            var itemCalories = itemObj.calories // Getting information for the elements above
+            var itemPrice = "$" + itemObj.price // Getting information for the elements above
 
-                var imageURL = itemObj.source // Getting information for the elements above
-                var itemName = itemObj.name // Getting information for the elements above
-                var itemCalories = itemObj.calories // Getting information for the elements above
-                var itemPrice = "$" + itemObj.price // Getting information for the elements above
+            var uppercaseImageName = itemName.charAt(0).toUpperCase() + itemName.slice(1) // Used to unify capitalization on pages
 
-                var uppercaseImageName = itemName.charAt(0).toUpperCase() + itemName.slice(1) // Used to unify capitalization on pages
+            itemContainer.classList.add("shop-item") // Adding classes for CSS
+            itemContainer.classList.add(uppercaseImageName) // Adding classes for CSS
+            itemInfo.classList.add("shop-item-info") // Adding classes for CSS
 
-                itemContainer.classList.add("shop-item") // Adding classes for CSS
-                itemContainer.classList.add(uppercaseImageName) // Adding classes for CSS
-                itemInfo.classList.add("shop-item-info") // Adding classes for CSS
+            imageElement.src = imageURL // Setting up HTML for elements
+            nameElement.innerHTML = uppercaseImageName // Setting up HTML for elements
+            priceElement.innerHTML = itemPrice // Setting up HTML for elements
+            caloriesElement.innerHTML = itemCalories + " cal" // Setting up HTML for elements
+            buttonAddToCart.innerHTML = "ADD TO CART" // Setting up HTML for elements
 
-                imageElement.src = imageURL // Setting up HTML for elements
-                nameElement.innerHTML = uppercaseImageName // Setting up HTML for elements
-                priceElement.innerHTML = itemPrice // Setting up HTML for elements
-                caloriesElement.innerHTML = itemCalories + " cal" // Setting up HTML for elements
-                buttonAddToCart.innerHTML = "ADD TO CART" // Setting up HTML for elements
+            shop.appendChild(itemContainer) // Adding elements to page
+            itemContainer.appendChild(imageElement) // Adding elements to page
+            itemContainer.appendChild(itemInfo) // Adding elements to page
+            itemInfo.appendChild(nameElement) // Adding elements to page
+            itemInfo.appendChild(priceElement) // Adding elements to page
+            itemInfo.appendChild(caloriesElement) // Adding elements to page
+            itemInfo.appendChild(buttonAddToCart) // Adding elements to page
 
-                shop.appendChild(itemContainer) // Adding elements to page
-                itemContainer.appendChild(imageElement) // Adding elements to page
-                itemContainer.appendChild(itemInfo) // Adding elements to page
-                itemInfo.appendChild(nameElement) // Adding elements to page
-                itemInfo.appendChild(priceElement) // Adding elements to page
-                itemInfo.appendChild(caloriesElement) // Adding elements to page
-                itemInfo.appendChild(buttonAddToCart) // Adding elements to page
-
-                buttonAddToCart.classList.add(uppercaseImageName) // Used for styling
-                buttonAddToCart.classList.add("btn")
-                buttonAddToCart.onclick = function () {
-                    var itemClass = this.classList.toString()
-                    console.log(itemClass)
-                    var itemOnly = itemClass.substring(0, itemClass.length - 4)
-                    console.log(itemOnly)
-                    var itemStored = localStorage.getItem(itemOnly)
-                    console.log(itemStored)
-                    var itemObject = JSON.parse(itemStored)
+            buttonAddToCart.classList.add(uppercaseImageName) // Used for styling
+            buttonAddToCart.classList.add("btn")
+            buttonAddToCart.onclick = function () {
+                var itemClass = this.classList.toString()
+                console.log(itemClass)
+                var itemOnly = itemClass.substring(0, itemClass.length - 4)
+                console.log(itemOnly)
+                var itemStored = localStorage.getItem(itemOnly)
+                console.log(itemStored)
+                var itemObject = JSON.parse(itemStored)
+                if(itemObject.inCart == false){
                     itemObject.inCart = true
                     itemObject.quantity = 1
-                    localStorage.setItem(itemOnly, JSON.stringify(itemObject))
                 }
+                else{
+                    itemObject.quantity = itemObject.quantity + 1
+                }
+                localStorage.setItem(itemOnly, JSON.stringify(itemObject))
             }
+
         }
     }
 }
@@ -89,8 +89,10 @@ const tempMap = new Map([
     ["joeldw9", ["Joel Wilkerson", "sweaty"]], // List of users, increases through localStorage but includes these hardcoded
     ["DonovaNewAge", ["Donovan Winters", "gigachad"]], // List of users, increases through localStorage but includes these hardcoded
     ["ChildishSantino", ["Santino Milillo", "tino69420"]], // List of users, increases through localStorage but includes these hardcoded
+    ["MainManMainul", ["Mainul Chowdhury", "devloper123"]]
 ])
 
+var adminArray = ["joeldw9", "DonovaNewAge", "ChildishSantino", "MainManMainul"]
 
 function checkPassword() {
     username = $("#username").val(); // Gets value from input
@@ -127,7 +129,7 @@ function signUp() {
         tempMap.set(username, key)
         localStorage.setItem(username, JSON.stringify({ "type": "user", "fullname": fullname, "username": username, "password": entered, "currentuser": true })) // For user access persistence
     } else {
-        console.log("Nope")
+        alert("The information you was not valid. Try reconfirming your password.")
     }
     console.log(tempMap)
 
@@ -136,8 +138,6 @@ function signUp() {
 function reel() {
     $("#signup").slideDown(1000)
 }
-
-var adminArray = ["joeldw9", "DonovaNewAge", "ChildishSantino"]
 
 function addItem() {
 
