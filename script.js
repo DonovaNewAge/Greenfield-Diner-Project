@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
 
     var keys = Object.keys(localStorage) // Gets items from localStorage
     console.log(keys.length)
@@ -46,10 +46,10 @@ function menu() {
         if (itemToAddParsed.type == "admin" && itemToAddParsed.currentuser == true) { // Separates item that determines if admin
             $(".adminButtons").show(); // Separates item that determines if admin
             continue // Separates item that determines if admin
-        } else if (itemToAddParsed.type == "user" || itemToAddParsed.type == "admin") {
-            continue
-        } else {
+        }
+        else if (itemToAddParsed.type == "item") {
             var itemObj = JSON.parse(itemToAdd); // Gets items for the menu 
+
             if (itemObj.type == "item") { // Gets items for the menu
 
                 var shop = document.getElementById("shop-items") // Gets the menu content area
@@ -97,12 +97,16 @@ function menu() {
                     var itemStored = localStorage.getItem(itemOnly)
                     console.log(itemStored)
                     var itemObject = JSON.parse(itemStored)
+
                     itemObject.inCart = true
                     itemObject.quantity = 1
-                    localStorage.setItem(itemOnly, JSON.stringify(itemObject))
-                    window.location.href = "Cart.html"
                 }
+                else{
+                    itemObject.quantity = itemObject.quantity + 1
+                }
+                localStorage.setItem(itemOnly, JSON.stringify(itemObject))
             }
+
         }
     }
 }
@@ -111,8 +115,10 @@ const tempMap = new Map([
     ["joeldw9", ["Joel Wilkerson", "sweaty"]], // List of users, increases through localStorage but includes these hardcoded
     ["DonovaNewAge", ["Donovan Winters", "gigachad"]], // List of users, increases through localStorage but includes these hardcoded
     ["ChildishSantino", ["Santino Milillo", "tino69420"]], // List of users, increases through localStorage but includes these hardcoded
+    ["MainManMainul", ["Mainul Chowdhury", "devloper123"]]
 ])
 
+var adminArray = ["joeldw9", "DonovaNewAge", "ChildishSantino", "MainManMainul"]
 
 function checkPassword() {
     username = $("#username").val(); // Gets value from input
@@ -149,7 +155,7 @@ function signUp() {
         tempMap.set(username, key)
         localStorage.setItem(username, JSON.stringify({ "type": "user", "fullname": fullname, "username": username, "password": entered, "currentuser": true })) // For user access persistence
     } else {
-        console.log("Nope")
+        alert("The information you was not valid. Try reconfirming your password.")
     }
     console.log(tempMap)
 
@@ -158,8 +164,6 @@ function signUp() {
 function reel() {
     $("#signup").slideDown(1000)
 }
-
-var adminArray = ["joeldw9", "DonovaNewAge", "ChildishSantino"]
 
 function addItem() {
 
@@ -195,7 +199,7 @@ function addItem() {
     itemInfo.append(nameElement, priceElement, caloriesElement, buttonAddToCart) // Adding elements to page
 
     buttonAddToCart.classList.add("btn") // Used for styling
-    $(buttonAddToCart).click(function() { // To add to cart
+    $(buttonAddToCart).click(function () { // To add to cart
         if (buttonAddToCart.classList.contains("btn")) {
             var classToFind = this.classList.toString()
             var classSliced = classToFind.substring(0, classToFind.length - 4);
