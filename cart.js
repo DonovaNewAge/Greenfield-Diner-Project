@@ -1,3 +1,5 @@
+    var orderArray = []
+
 window.onload = function () {
     var itemsArray = []
     var orderArray = []
