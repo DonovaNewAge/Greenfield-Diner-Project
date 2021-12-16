@@ -117,7 +117,7 @@ window.onload = function () {
 
                 var itemTotal = price * quantity
 
-                total = total + itemTotal
+                var total = total + itemTotal
                 console.log(total)
 
 
