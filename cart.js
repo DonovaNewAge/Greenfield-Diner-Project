@@ -41,7 +41,7 @@ window.onload = function() {
 
                 aboutTitle = document.createElement("h1")
 
-                aboutTitle.innerHTML = uppercaseImageName
+                aboutTitle.innerHTML = uppercaseImageName.replace("_", " ")
                 cartAboutBox.appendChild(aboutTitle)
 
                 aboutSubtitle = document.createElement("h3")
@@ -217,7 +217,8 @@ window.onload = function() {
         "tax": tax,
         "afterTax": totalWithTax,
         "orderStatus": "prePayment",
-        "orderItems": orderArray
+        "orderItems": orderArray,
+        "orderDelivery": false
     }))
 
     var checkoutButton = document.createElement("button")
