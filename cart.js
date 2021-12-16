@@ -170,7 +170,7 @@ window.onload = function () {
     
  
 
-if (total == 0) {
+if (total = 0) {
     var emptyCart = document.createElement("div")
     emptyCart.classList.add("emptyCartClass")
     emptyCart.innerHTML = "Your cart is empty."
