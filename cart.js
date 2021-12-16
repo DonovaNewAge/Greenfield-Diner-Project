@@ -216,6 +216,12 @@ labelsContainer.append(label1, label2, label3)
 
 pricesContainer.append(amount1, amount2, amount3)
 
+var checkoutButton = document.createElement("button")
+checkoutButton.innerHTML = "Check Out"
+pricesContainer.append(checkoutButton)
+checkoutButton.addEventListener("click", function () {
+    window.location.href = "payment.html"
+})
 
     localStorage.setItem("order", JSON.stringify({
         "type": "order",
@@ -226,11 +232,3 @@ pricesContainer.append(amount1, amount2, amount3)
         "orderItems": orderArray,
         "orderDelivery": false
     }))
-
-
-var checkoutButton = document.createElement("button")
-checkoutButton.innerHTML = "Check Out"
-pricesContainer.append(checkoutButton)
-checkoutButton.addEventListener("click", function () {
-    window.location.href = "payment.html"
-})
